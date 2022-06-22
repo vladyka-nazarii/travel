@@ -23,10 +23,6 @@ html {
   align-items: center;
 }
 /* Logo */
-.logo {
-  width: 216px;
-  margin-top: -1px;
-}
 .vector {
   width: 30px;
   height: 30px;
@@ -53,7 +49,7 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
-  margin-left: -38px;
+  margin-left: -30px;
 }
 .nav-link {
   text-decoration: none;
