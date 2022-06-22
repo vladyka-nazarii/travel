@@ -230,18 +230,15 @@ input:focus::placeholder {
   justify-content: space-between;
   padding-top: 42px;
 }
-.three-elements-center {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: -152px;
-}
 .step {
   height: 152px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+.step.calendar {
+  margin-left: 70px;
 }
 .step-logo-block {
   width: 100px;
