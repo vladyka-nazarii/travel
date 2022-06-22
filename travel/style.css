@@ -6,31 +6,31 @@
 }
 @font-face {
   font-family: 'Red Hat Text';
-  src: url("assets/fonts/RedHatText-Medium.ttf");
+  src: url("./assets/fonts/RedHatText-Medium.ttf");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'Aleo';
-  src: url("assets/fonts/Aleo-Bold.ttf");
+  src: url("./assets/fonts/Aleo-Bold.ttf");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'Aleo';
-  src: url("assets/fonts/Aleo-BoldItalic.ttf");
+  src: url("./assets/fonts/Aleo-BoldItalic.ttf");
   font-weight: 700;
   font-style: italic;
 }
 @font-face {
   font-family: 'Aleo';
-  src: url("assets/fonts/Aleo-Regular.ttf");
+  src: url("./assets/fonts/Aleo-Regular.ttf");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Aleo';
-  src: url("assets/fonts/Aleo-Italic.ttf");
+  src: url("./assets/fonts/Aleo-Italic.ttf");
   font-weight: 400;
   font-style: italic;
 }
