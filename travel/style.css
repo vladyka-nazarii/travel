@@ -4,8 +4,8 @@ html {
 /* ---Body--- */
 .body {
   margin: 0;
-  background: url(./assets/img/garrett-parker.png) center top no-repeat,
-  url(./assets/img/rectangle.png) center bottom no-repeat,
+  background: url(./assets/img/garrett-parker.jpg) center top no-repeat,
+  url(./assets/img/rectangle.jpg) center bottom no-repeat,
   #E5E5E5;
 }
 /* --Header-- */
