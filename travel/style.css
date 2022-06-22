@@ -1,0 +1,418 @@
+html {
+  scroll-behavior: smooth;
+}
+/* ---Body--- */
+.body {
+  margin: 0;
+  background: url(./assets/img/garrett-parker.png) center top no-repeat,
+  url(./assets/img/rectangle.png) center bottom no-repeat,
+  #E5E5E5;
+}
+/* --Header-- */
+.header {
+  box-sizing: border-box;
+  width: 1440px;
+  height: 90px;
+  margin: auto;
+  padding-left: 120px;
+  padding-right: 120px;
+  background: rgba(242, 120, 92, 0.7);
+  box-shadow: 0px 4px 4px rgba(13, 96, 111, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* Logo */
+.logo {
+  width: 216px;
+  margin-top: -1px;
+}
+.vector {
+  width: 30px;
+  height: 30px;
+  margin-right: 6px;
+}
+.logo-text {
+  font-family: 'Magra', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  color: #FFFFFF;
+}
+/* Navigation */
+.nav-list {
+  display: flex;
+  align-items : center;
+  gap: 42.5px;
+  list-style: none;
+  font-family: 'Red Hat Text', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #FFFFFF;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  margin-left: -38px;
+}
+.nav-link {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+/* Login */
+.login {
+  display: flex;
+  align-items: center;
+}
+/* Button Login */
+.button-login {
+  width: 103px;
+  height: 41px;
+  border: 0;
+  padding: 0;
+  background: #0D606F;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 2px 3px rgba(13, 96, 111, 0.16);
+  border-radius: 10px;
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+/* --Main-- */
+.main {
+  width: 1440px;
+  margin: auto;
+}
+/* -Preview- */
+.first-section {
+  height: 675px;
+}
+.preview {
+  width: 892px;
+  height: 422px;
+  padding-left: 120px;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+}
+/* Preview Title */
+.section-title.first {
+  font-family: 'Aleo', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  color: #FFFFFF;
+  margin: 0;
+}
+/* Preview Text */
+.search-text {
+  font-family: 'Aleo', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 20px;
+  color: #FFFFFF;
+  margin-top: -13px;
+}
+/* Serch Form */
+.search-form {
+  width: 892px;
+  height: 95px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  display: flex;
+  justify-content:space-between;
+}
+.search-input {
+  width: 560px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  outline: none;
+  margin-left: 39px;
+  margin-top: 33px;
+  font-family: 'Aleo', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  color: #F2785C;
+}
+::placeholder {
+  color: #F2785C;
+}
+input:focus::placeholder {
+  opacity: 0;
+}
+/* All Buttons */
+.button {
+  width: 228px;
+  height: 59px;
+  border: 0;
+  padding: 0;
+  background: #0D606F;
+  box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
+  border-radius: 10px;
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Button Start Planning */
+.button.start {
+  margin: 18px; 
+}
+/* -Steps- */
+.second-section {
+  background-color: #FFFFFF;
+  height: 404px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Sections Title */
+.section-title {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  color: #F2785C;
+  margin: 0;
+}
+.steps {
+  width: 1177px;
+  height: 247px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Steps Boxes */
+.three-elements {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 42px;
+}
+.three-elements-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -152px;
+}
+.step {
+  height: 152px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.step-logo-block {
+  width: 100px;
+  height: 100px;
+  background: #F2785C;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.step-logo {
+  height: 45px;
+}
+.step-logo.calendar {
+  height: 52px;
+}
+.step-text {
+  font-family: 'Aleo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #0D606F;
+}
+/* -Destinations- */
+.destinations {
+  background-color: #FFFFFF;
+  height: 1115px;
+  padding-top: 20px;
+  text-align: center;
+}
+/* Carousel */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  height: 800px;
+  width: 100%;
+  padding-top: 45px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+.picture {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.destination-img {
+  width: 800px;
+  height: 800px;
+  border-radius: 15px;
+}
+.destination-text {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  color: #FFFFFF;
+  margin-top: -82px;
+  margin-left: 15px;
+}
+/* Scroller (3 dots) */
+.scroller {
+  width: 80px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+.round {
+  width: 20px;
+  height: 20px;
+  background: rgba(242, 120, 92, 0.5);
+  border-radius: 20px;
+}
+.round.center {
+  background: #F2785C;
+}
+/* Button Find More */
+.button.find {
+  margin: auto;
+}
+/* Arrow on the Button */
+.arrow {
+  width: 35px;
+  height: 22.5px;
+  margin-right: 12.5px;
+  align-self: center;
+}
+/* -Stories- */
+.stories-top {
+  height: 100px;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
+}
+.section-title.stories {
+  margin-top: 7px;
+}
+.stories-main {
+  height: 1270px;
+  background: rgba(255, 255, 255, 0.7);
+}
+.stories-body {
+  padding-top: 40px;
+  padding-left: 120px;
+  padding-right: 125px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.story {
+  display: flex;
+  gap: 40px;
+}
+/* Story Picture */
+.story-photo {
+  filter: drop-shadow(0px 4px 4px #0D606F);
+  border-radius: 16px;
+}
+.story-description {
+  text-align: left;
+}
+/* Story Title */
+.story-title {
+  font-family: 'Aleo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  color: #0D606F;
+  margin: 0;
+}
+/* Story Text */
+.story-text {
+  font-family: 'Aleo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #0D606F;
+  margin: 0;
+  margin-top: 24px;
+}
+/* Link Read More */
+.story-link {
+  font-family: 'Aleo';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  color: #0D606F;
+}
+/* Button See More */
+.button.see {
+  margin: auto;
+  margin-top: 40px;
+}
+/* --Footer-- */
+.footer {
+  width: 1440px;
+  height: 61px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* RS School */
+.rs-school {
+  width: 190px;
+  margin-left: 85px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+.git-logo {
+  height: 46px;
+}
+/* All Rights Reserved */
+.footer-text {
+  font-family: 'Red Hat Text';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-left: 24px;
+}
+/* Social */
+.social {
+  padding-top: 3px;
+  width: 140px;
+  margin-right: 121px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+.instagram-logo {
+  height: 32px;
+}
+.youtube-logo {
+  height: 28px;
+}
+.twitter-logo {
+  height: 27px;
+}
