@@ -1,3 +1,39 @@
+@font-face {
+  font-family: 'Magra';
+  src: url("./assets/fonts/Magra-Bold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url("assets/fonts/RedHatText-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aleo';
+  src: url("assets/fonts/Aleo-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aleo';
+  src: url("assets/fonts/Aleo-BoldItalic.ttf");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Aleo';
+  src: url("assets/fonts/Aleo-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Aleo';
+  src: url("assets/fonts/Aleo-Italic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -69,7 +105,7 @@ html {
   background: #0D606F;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 2px 3px rgba(13, 96, 111, 0.16);
   border-radius: 10px;
-  font-family: 'Red Hat Text';
+  font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -149,7 +185,7 @@ input:focus::placeholder {
   background: #0D606F;
   box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
   border-radius: 10px;
-  font-family: 'Red Hat Text';
+  font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -173,7 +209,7 @@ input:focus::placeholder {
 }
 /* Sections Title */
 .section-title {
-  font-family: 'Red Hat Text';
+  font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
@@ -223,7 +259,7 @@ input:focus::placeholder {
   height: 52px;
 }
 .step-text {
-  font-family: 'Aleo';
+  font-family: 'Aleo', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -259,7 +295,7 @@ input:focus::placeholder {
   border-radius: 15px;
 }
 .destination-text {
-  font-family: 'Red Hat Text';
+  font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
@@ -334,7 +370,7 @@ input:focus::placeholder {
 }
 /* Story Title */
 .story-title {
-  font-family: 'Aleo';
+  font-family: 'Aleo', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 35px;
@@ -343,7 +379,7 @@ input:focus::placeholder {
 }
 /* Story Text */
 .story-text {
-  font-family: 'Aleo';
+  font-family: 'Aleo', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -353,7 +389,7 @@ input:focus::placeholder {
 }
 /* Link Read More */
 .story-link {
-  font-family: 'Aleo';
+  font-family: 'Aleo', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -386,7 +422,7 @@ input:focus::placeholder {
 }
 /* All Rights Reserved */
 .footer-text {
-  font-family: 'Red Hat Text';
+  font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
