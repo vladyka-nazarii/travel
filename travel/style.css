@@ -75,7 +75,7 @@ html {
 .nav-list {
   display: flex;
   align-items : center;
-  gap: 42.5px;
+  gap: 22.5px;
   list-style: none;
   font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
@@ -90,6 +90,12 @@ html {
 .nav-link {
   text-decoration: none;
   color: #FFFFFF;
+  padding: 10px;
+  border-radius: 10px;
+}
+.nav-link:hover {
+  color: #0D606F;
+  background-color: #FFFFFF;
 }
 /* Login */
 .login {
@@ -103,6 +109,7 @@ html {
   border: 0;
   padding: 0;
   background: #0D606F;
+  border: 2px solid #0D606F;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 2px 3px rgba(13, 96, 111, 0.16);
   border-radius: 10px;
   font-family: 'Red Hat Text', sans-serif;
@@ -110,6 +117,10 @@ html {
   font-weight: 500;
   font-size: 16px;
   color: #FFFFFF;
+}
+.button-login:hover {
+  background: #FFFFFF;
+  color: #0D606F;
 }
 /* --Main-- */
 .main {
@@ -183,6 +194,7 @@ input:focus::placeholder {
   border: 0;
   padding: 0;
   background: #0D606F;
+  border: 2px solid #0D606F;
   box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
   border-radius: 10px;
   font-family: 'Red Hat Text', sans-serif;
@@ -193,6 +205,19 @@ input:focus::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.button img:last-child {
+  display: none;
+}
+.button:hover {
+  background: #FFFFFF;
+  color: #0D606F;
+}
+.button:hover img:last-child {
+  display: block;
+}
+.button:hover img:first-child {
+  display: none;
 }
 /* Button Start Planning */
 .button.start {
@@ -392,6 +417,9 @@ input:focus::placeholder {
   font-size: 20px;
   color: #0D606F;
 }
+.story-link:hover {
+  color: #000;
+}
 /* Button See More */
 .button.see {
   margin: auto;
@@ -426,6 +454,9 @@ input:focus::placeholder {
   color: #FFFFFF;
   margin-left: 24px;
 }
+.footer-text:hover {
+  color: #000;
+}
 /* Social */
 .social {
   padding-top: 3px;
@@ -444,4 +475,13 @@ input:focus::placeholder {
 }
 .twitter-logo {
   height: 27px;
+}
+.footer-logo img:last-child {
+  display: none;
+}
+.footer-logo:hover img:last-child {
+  display: block;
+}
+.footer-logo:hover img:first-child {
+  display: none;
 }
