@@ -104,7 +104,8 @@ body.lock {
 }
 .menu {
   display: flex;
-  width: 47.5%;
+  width: 53%;
+  margin-left: 5.5%;
 }
 .burger-close {
   display: none;
@@ -205,7 +206,7 @@ body.lock {
   font-style: normal;
   font-weight: 700;
   font-size: 80px;
-  line-height: 96px;
+  line-height: 120%;
   color: #FFFFFF;
   margin: 0;
   padding: 0;
@@ -298,7 +299,7 @@ input:focus::placeholder {
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
-  line-height: 53px;
+  line-height: 132%;
   color: #F2785C;
   margin: 0;
   padding: 80px 0 40px 0;
@@ -451,13 +452,13 @@ input:focus::placeholder {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-bottom: 41px;
+  padding-bottom: 3%;
 }
 .stories-body {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 40px 125px 0 120px;
+  padding: 2.7% 7.3% 0 8.4%;
 }
 .story {
   display: flex;
@@ -467,6 +468,7 @@ input:focus::placeholder {
   display: none;
 }
 .story-photo {
+  align-self: center;
   filter: drop-shadow(0px 4px 4px #0D606F);
   border-radius: 16px;
 }
@@ -493,7 +495,7 @@ input:focus::placeholder {
   font-weight: 400;
   font-size: 20px;
   color: #0D606F;
-  margin: 24px 0 0 0;
+  margin: 3.2% 0 0 0;
 }
 .story-link {
   font-family: 'Aleo', serif;
@@ -599,6 +601,10 @@ input:focus::placeholder {
   .logo {
     width: 18%;
   }
+  .menu {
+    width: 100%;
+    margin: 0;
+  }
   /* ----------------------<PREVIEW*1100>---------------------- */
   .first-section {
     height: 494px;
@@ -612,12 +618,16 @@ input:focus::placeholder {
   /* ----------------------<STEPS*1100>---------------------- */
   .section-title {
     font-size: 26px;
+    padding: 50px 0 30px 0;
   }
   .step-text {
   font-size: 16px;
   line-height: 18px;
   }
   /* ----------------------<DESTINATIONS*1100>---------------------- */
+  .section-title.destinations {
+    padding: 50px 0 30px 0;
+  }
   .carousel {
     height: 580px;
   }
@@ -627,6 +637,20 @@ input:focus::placeholder {
   }
   .fourth-section {
     display: flex;
+  }
+  /* ----------------------<STORIES*1100>---------------------- */
+  .stories-body {
+    gap: 15px;
+    padding: 10px 15px;
+  }
+  .story-photo {
+    width: 300px;
+  }
+  .story-title {
+    font-size: 28px;
+  }
+  .story-text, .story-link {
+    font-size: 18px;
   }
 }
 @media (max-width: 800px) {
@@ -668,6 +692,7 @@ input:focus::placeholder {
   /* ----------------------<STEPS*800>---------------------- */
   .section-title {
     font-size: 20px;
+    padding: 30px 0 25px 0;
   }
   .step {
     width: 27%;
@@ -697,6 +722,9 @@ input:focus::placeholder {
     line-height: 16px;
   }
   /* ----------------------<DESTINATIONS*800>---------------------- */
+  .section-title.destinations {
+    padding: 30px 0 25px 0;
+  }
   .carousel {
     height: 450px;
   }
@@ -704,7 +732,30 @@ input:focus::placeholder {
     width: 450px;
     height: 450px;
   }
+  .destination-text {
+    font-size: 28px;
+  }
+  .button {
+    margin: 35px auto 0 auto;
+  }
+  .button-arrow {
+    Width: 25px;
+    Height: 25px;
+  }
   /* ----------------------<STORIES*800>---------------------- */
+  .story {
+    gap: 20px;
+  }
+  .story-photo {
+    width: 250px;
+  }
+  .story-title {
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .story-text, .story-link {
+    font-size: 14px;
+  }
   /* ----------------------<FOOTER*800>---------------------- */
   .footer-text {
     font-size: 14px;
@@ -782,6 +833,34 @@ input:focus::placeholder {
   .destination-img {
     width: 360px;
     height: 360px;
+  }
+  .destination-text {
+    font-size: 24px;
+  }
+  .round {
+    width: 15px;
+    height: 15px;
+  }
+  .button {
+    margin: 30px auto 0 auto;
+  }
+  .button-arrow {
+    Width: 20px;
+    Height: 20px;
+  }
+  /* ----------------------<STORIES*650>---------------------- */
+  .story {
+    gap: 15px;
+  }
+  .story-photo {
+    width: 200px;
+  }
+  .story-title {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .story-text, .story-link {
+    font-size: 11px;
   }
  /* ----------------------<FOOTER*650>---------------------- */
  .footer {
@@ -866,6 +945,10 @@ input:focus::placeholder {
     width: 40px;
     height: 30px;
   }
+  .step-text {
+    font-size: 12px;
+    line-height: 14px;
+  }
   /* ----------------------<DESTINATIONS*500>---------------------- */
   .carousel {
     height: 280px;
@@ -873,6 +956,31 @@ input:focus::placeholder {
   .destination-img {
     width: 280px;
     height: 280px;
+  }
+  .destination-text {
+    font-size: 20px;
+  }
+  .round {
+    width: 10px;
+    height: 10px;
+  }
+  .button {
+    margin: 15px auto 0 auto;
+  }
+  .button-arrow {
+    Width: 15px;
+    Height: 15px;
+  }
+  /* ----------------------<STORIES*500>---------------------- */
+  .story-photo {
+    width: 160px;
+  }
+  .story-title {
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .story-text, .story-link {
+    font-size: 10px;
   }
   /* ----------------------<FOOTER*500>---------------------- */
   .footer-text {
@@ -973,7 +1081,6 @@ input:focus::placeholder {
   /* ----------------------<PREVIEW*390>---------------------- */
   .first-section {
     height: 176px;
-    background: 
   }
   .preview {
     min-height: 48px;
@@ -1041,7 +1148,6 @@ input:focus::placeholder {
   }
   .destination-text {
     margin: -202px 0 0 15px;
-    font-size: 20px;
   }
   .scroller {
     position: relative;
@@ -1082,6 +1188,9 @@ input:focus::placeholder {
   }
   .story {
     gap: 10px;
+  }
+  .story-photo {
+    width: 155px;
   }
   .story img:first-child {
     display: none;
