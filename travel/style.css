@@ -1,3 +1,4 @@
+/* --------------------------<FONTS>-------------------------- */
 @font-face {
   font-family: 'Magra';
   src: url("./assets/fonts/Magra-Bold.ttf");
@@ -34,35 +35,52 @@
   font-weight: 400;
   font-style: italic;
 }
+/* --------------------------</FONTS>-------------------------- */
+
+/* --------------------------<HTML>-------------------------- */
 html {
   scroll-behavior: smooth;
 }
-/* ---Body--- */
+/* --------------------------</HTML>-------------------------- */
+
+/* --------------------------<BODY>-------------------------- */
 .body {
   margin: 0;
-  background: url(./assets/img/garrett-parker.jpg) center top no-repeat,
-  url(./assets/img/rectangle.jpg) center bottom no-repeat,
+  background: url(./assets/img/back-top.jpg) center top no-repeat,
+  url(./assets/img/back-bottom.jpg) center bottom no-repeat,
   #E5E5E5;
 }
-/* --Header-- */
+/* --------------------------</BODY>-------------------------- */
+
+/* --------------------------<HEADER>-------------------------- */
 .header {
-  box-sizing: border-box;
-  width: 1440px;
-  height: 90px;
-  margin: auto;
-  padding-left: 120px;
-  padding-right: 120px;
+  max-width: 1440px;
+  min-height: 90px;
+  margin: 0 auto;
   background: rgba(242, 120, 92, 0.7);
   box-shadow: 0px 4px 4px rgba(13, 96, 111, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper__header {
+  width: 1200px;
+  margin: 0 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-/* Logo */
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .vector {
-  width: 30px;
-  height: 30px;
   margin-right: 6px;
+  margin-bottom: 4%;
+}
+.vector-path {
+  transition: 0.3s;
 }
 .logo-text {
   font-family: 'Magra', sans-serif;
@@ -70,39 +88,44 @@ html {
   font-weight: 600;
   font-size: 32px;
   color: #FFFFFF;
+  transition: 0.3s;
 }
-/* Navigation */
-.nav-list {
+.index-link {
+  text-decoration: none;
+}
+.logo:hover .vector-path {
+  fill: #0D606F;
+}
+.logo:hover .logo-text {
+  color: #0D606F;
+}
+.nav {
+  width: 47.5%;
   display: flex;
+}
+.nav-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
   align-items : center;
-  gap: 22.5px;
   list-style: none;
   font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   color: #FFFFFF;
-  height: 100%;
   margin: 0;
   padding: 0;
-  margin-left: -30px;
 }
 .nav-link {
   text-decoration: none;
   color: #FFFFFF;
-  padding: 10px;
-  border-radius: 10px;
+  margin: 5px;
+  transition: 0.3s;
 }
 .nav-link:hover {
   color: #0D606F;
-  background-color: #FFFFFF;
 }
-/* Login */
-.login {
-  display: flex;
-  align-items: center;
-}
-/* Button Login */
 .button-login {
   width: 103px;
   height: 41px;
@@ -117,64 +140,84 @@ html {
   font-weight: 500;
   font-size: 16px;
   color: #FFFFFF;
+  margin-left: 2.6%;
+  transition: 0.3s;
 }
 .button-login:hover {
   background: #FFFFFF;
   color: #0D606F;
 }
-/* --Main-- */
-.main {
-  width: 1440px;
-  margin: auto;
+.burger {
+  display: none;
 }
-/* -Preview- */
+.burger-path {
+  transition: 0.3s;
+}
+.burger:hover .burger-path {
+  fill: #0D606F;
+}
+/* --------------------------</HEADER>-------------------------- */
+
+/* --------------------------<MAIN>-------------------------- */
+.main {
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+/* --------------------------<PREVIEW>-------------------------- */
 .first-section {
   height: 675px;
+  display: flex;
+  justify-content: center;
+}
+.wrapper__preview {
+  width: 1200px;
+  margin: 0 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .preview {
-  width: 892px;
-  height: 422px;
-  padding-left: 120px;
-  padding-top: 30px;
+  min-height: 57.8%;
+  max-width: 892px;
   display: flex;
   flex-direction: column;
-  gap: 46px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 2.6%;
 }
-/* Preview Title */
 .section-title.first {
   font-family: 'Aleo', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 80px;
+  line-height: 96px;
   color: #FFFFFF;
   margin: 0;
+  padding: 0;
 }
-/* Preview Text */
 .search-text {
   font-family: 'Aleo', serif;
   font-style: italic;
   font-weight: 700;
   font-size: 20px;
   color: #FFFFFF;
-  margin-top: -13px;
 }
-/* Serch Form */
 .search-form {
-  width: 892px;
-  height: 95px;
+  width: 100%;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 16px;
   display: flex;
   justify-content:space-between;
+  align-items: center;
+  margin-top: 1.5%;
 }
 .search-input {
-  width: 560px;
-  height: 24px;
+  width: 50%;
+  margin-left: 4.4%;
   background: rgba(255, 255, 255, 0);
   border: none;
   outline: none;
-  margin-left: 39px;
-  margin-top: 33px;
   font-family: 'Aleo', serif;
   font-style: italic;
   font-weight: 400;
@@ -183,16 +226,17 @@ html {
 }
 ::placeholder {
   color: #F2785C;
+  opacity: 1;
 }
 input:focus::placeholder {
   opacity: 0;
 }
-/* All Buttons */
 .button {
   width: 228px;
   height: 59px;
   border: 0;
   padding: 0;
+  margin: 40px auto 0 auto;
   background: #0D606F;
   border: 2px solid #0D606F;
   box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
@@ -205,9 +249,8 @@ input:focus::placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.button img:last-child {
-  display: none;
+  gap: 7%;
+  transition: 0.3s;
 }
 .button:hover {
   background: #FFFFFF;
@@ -216,54 +259,58 @@ input:focus::placeholder {
 .button:hover img:last-child {
   display: block;
 }
-.button:hover img:first-child {
-  display: none;
-}
-/* Button Start Planning */
 .button.start {
-  margin: 18px; 
+  margin: 2%;
 }
-/* -Steps- */
+/* --------------------------</PREVIEW>-------------------------- */
+
+/* --------------------------<STEPS>-------------------------- */
 .second-section {
   background-color: #FFFFFF;
-  height: 404px;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.wrapper__steps {
+  width: 1178px;
+  margin: 0 15px;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-/* Sections Title */
 .section-title {
   font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
+  line-height: 53px;
   color: #F2785C;
   margin: 0;
+  padding: 80px 0 40px 0;
 }
 .steps {
-  width: 1177px;
-  height: 247px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
-/* Steps Boxes */
 .three-elements {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding-top: 42px;
 }
 .step {
-  height: 152px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  gap: 30px;
 }
 .step.calendar {
-  margin-left: 70px;
+  margin-left: 6%;
 }
 .step-logo-block {
   width: 100px;
@@ -275,10 +322,13 @@ input:focus::placeholder {
   align-items: center;
 }
 .step-logo {
-  height: 45px;
+  margin: auto;
 }
-.step-logo.calendar {
-  height: 52px;
+.step-logo-path {
+  transition: 0.3s;
+}
+.step-logo-block:hover .step-logo-path {
+  fill: #0D606F;
 }
 .step-text {
   font-family: 'Aleo', serif;
@@ -288,109 +338,130 @@ input:focus::placeholder {
   line-height: 24px;
   color: #0D606F;
 }
-/* -Destinations- */
+/* --------------------------</STEPS>-------------------------- */
+
+/* --------------------------<DESTINATIONS>-------------------------- */
 .destinations {
   background-color: #FFFFFF;
-  height: 1115px;
-  padding-top: 20px;
   text-align: center;
 }
-/* Carousel */
+.section-title.destinations {
+  padding: 97px 0 46px 0;
+}
 .carousel {
   position: relative;
   overflow: hidden;
   height: 800px;
-  width: 100%;
-  padding-top: 45px;
   display: flex;
   justify-content: center;
-  gap: 60px;
+  gap: 4.1%;
 }
 .picture {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+}
+.picture img:nth-child(2) {
+  display: none;
 }
 .destination-img {
   width: 800px;
   height: 800px;
-  border-radius: 15px;
+  border-radius: 16px;
+}
+.picture.spain {
+  order: 1;
+}
+.picture.japan {
+  order: 2;
+}
+.picture.usa {
+  order: 3;
 }
 .destination-text {
+  align-self: flex-start;
   font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
   color: #FFFFFF;
-  margin-top: -82px;
-  margin-left: 15px;
+  margin-top: -10.5%;
+  margin-left: 2%;
 }
-/* Scroller (3 dots) */
+.arrows {
+  display: none;
+}
+.left-arrow {
+  cursor: pointer;
+}
+.right-arrow {
+  cursor: pointer;
+}
 .scroller {
-  width: 80px;
-  height: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: auto;
   margin-top: 25px;
-  margin-bottom: 40px;
+  gap: 0.7%;
 }
 .round {
   width: 20px;
   height: 20px;
   background: rgba(242, 120, 92, 0.5);
-  border-radius: 20px;
+  border-radius: 10px;
+  cursor: pointer;
 }
-.round.center {
+.round.active {
   background: #F2785C;
 }
-/* Button Find More */
-.button.find {
-  margin: auto;
+.button-arrow-path {
+  transition: 0.3s;
 }
-/* Arrow on the Button */
-.arrow {
-  width: 35px;
-  height: 22.5px;
-  margin-right: 12.5px;
-  align-self: center;
+.button:hover .button-arrow-path {
+  fill: #0D606F;
 }
-/* -Stories- */
+/* --------------------------</DESTINATIONS>-------------------------- */
+
+/* --------------------------<STORIES>-------------------------- */
+.fourth-section {
+  display: flex;
+}
 .stories-top {
-  height: 100px;
   background-color: #FFFFFF;
   display: flex;
   justify-content: center;
   align-items:flex-start;
 }
-.section-title.stories {
-  margin-top: 7px;
-}
 .stories-main {
-  height: 1270px;
   background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 41px;
 }
 .stories-body {
-  padding-top: 40px;
-  padding-left: 120px;
-  padding-right: 125px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding: 40px 125px 0 120px;
 }
 .story {
   display: flex;
   gap: 40px;
 }
-/* Story Picture */
+.story img:nth-child(2) {
+  display: none;
+}
 .story-photo {
   filter: drop-shadow(0px 4px 4px #0D606F);
   border-radius: 16px;
 }
 .story-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   text-align: left;
 }
-/* Story Title */
 .story-title {
   font-family: 'Aleo', serif;
   font-style: normal;
@@ -399,53 +470,56 @@ input:focus::placeholder {
   color: #0D606F;
   margin: 0;
 }
-/* Story Text */
+.story-text.mobile {
+  display: none;
+}
 .story-text {
   font-family: 'Aleo', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   color: #0D606F;
-  margin: 0;
-  margin-top: 24px;
+  margin: 24px 0 0 0;
 }
-/* Link Read More */
 .story-link {
   font-family: 'Aleo', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
   color: #0D606F;
+  transition: 0.3s;
 }
 .story-link:hover {
   color: #000;
 }
-/* Button See More */
-.button.see {
-  margin: auto;
-  margin-top: 40px;
-}
-/* --Footer-- */
+/* --------------------------</STORIES>-------------------------- */
+
+/* --------------------------<FOOTER>-------------------------- */
 .footer {
-  width: 1440px;
+  max-width: 1440px;
   height: 61px;
   margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-/* RS School */
 .rs-school {
-  width: 190px;
-  margin-left: 85px;
+  width: 186px;
+  margin-left: 6.5%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   list-style: none;
 }
-.git-logo {
-  height: 46px;
+.rs-school-logo-white {
+  transition: 0.3s;
 }
-/* All Rights Reserved */
+.rs-school-logo-black {
+  transition: 0.3s;
+}
+.git-logo-path {
+  transition: 0.3s;
+}
 .footer-text {
   font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
@@ -453,35 +527,542 @@ input:focus::placeholder {
   font-size: 16px;
   color: #FFFFFF;
   margin-left: 24px;
+  transition: 0.3s;
 }
-.footer-text:hover {
-  color: #000;
-}
-/* Social */
 .social {
   padding-top: 3px;
-  width: 140px;
-  margin-right: 121px;
+  width: 141px;
+  margin-right: 8.5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   list-style: none;
 }
-.instagram-logo {
-  height: 32px;
+.instagram-logo-path {
+  transition: 0.3s;
 }
-.youtube-logo {
-  height: 28px;
+.youtube-logo-path {
+  transition: 0.3s;
 }
-.twitter-logo {
-  height: 27px;
+.twitter-logo-path {
+  transition: 0.3s;
 }
-.footer-logo img:last-child {
-  display: none;
+.footer-logo:hover .rs-school-logo-white {
+  fill: #000;
 }
-.footer-logo:hover img:last-child {
-  display: block;
+.footer-logo:hover .rs-school-logo-black {
+  fill: #fff;
 }
-.footer-logo:hover img:first-child {
-  display: none;
+.footer-logo:hover .git-logo-path {
+  fill: #000;
 }
+.footer-text:hover {
+  color: #000;
+}
+.footer-logo:hover .instagram-logo-path {
+  fill: #000;
+}
+.footer-logo:hover .youtube-logo-path {
+  stroke: #000;
+}
+.footer-logo:hover .twitter-logo-path {
+  fill: #000;
+}
+/* --------------------------</FOOTER>-------------------------- */
+
+/* --------------------------<ADAPTIVE>-------------------------- */
+@media (max-width: 1100px) {
+  /* ----------------------<BODY*1100>---------------------- */
+  .body {
+    background: url(./assets/img/back-top.jpg) center top / 1100px no-repeat,
+    url(./assets/img/back-bottom.jpg) center bottom / 1100px no-repeat,
+    #E5E5E5;
+  }
+  /* ----------------------<HEAD*1100>---------------------- */
+  .nav {
+    width: 80%;
+  }
+  .logo {
+    width: 18%;
+  }
+  /* ----------------------<PREVIEW*1100>---------------------- */
+  .first-section {
+    height: 494px;
+  }
+  .section-title.first {
+    font-size: 75px;
+  }
+  .search-text {
+    font-size: 18px;
+  }
+  /* ----------------------<STEPS*1100>---------------------- */
+  .section-title {
+    font-size: 26px;
+  }
+  .step-text {
+  font-size: 16px;
+  line-height: 18px;
+  }
+  /* ----------------------<DESTINATIONS*1100>---------------------- */
+  .carousel {
+    height: 580px;
+  }
+  .destination-img {
+    width: 580px;
+    height: 580px;
+  }
+  .fourth-section {
+    display: flex;
+  }
+}
+@media (max-width: 800px) {
+  /* ----------------------<BODY*800>---------------------- */
+  .body {
+    background: url(./assets/img/back-top.jpg) center top / 800px no-repeat,
+    url(./assets/img/back-bottom.jpg) center bottom / 800px no-repeat,
+    #E5E5E5;
+  }
+  /* ----------------------<HEAD*800>---------------------- */
+  .header {
+    min-height: 60px;
+  }
+  .logo-text {
+    font-size: 22px;
+  }
+  .button-login {
+    width: 80px;
+    height: 35px;
+  }
+  /* ----------------------<PREVIEW*800>---------------------- */
+  .first-section {
+    height: 365px;
+  }
+  .section-title.first {
+    font-size: 60px;
+  }
+  .search-text {
+    font-size: 14px;
+  }
+  .search-input {
+    font-size: 20px;
+  }
+  .button {
+    width: 160px;
+    height: 45px;
+    font-size: 16px;
+  }
+  /* ----------------------<STEPS*800>---------------------- */
+  .section-title {
+    font-size: 20px;
+  }
+  .step {
+    width: 27%;
+    gap: 19px;
+  }
+  .step.bicycle {
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .step.calendar {
+    justify-content: flex-start;
+    text-align: center;
+    margin-left: 0;
+  }
+  .step.plane {
+    justify-content: flex-start;
+    align-items: flex-end;
+    text-align: right;
+  }
+  .step-logo-block {
+    width: 90px;
+    height: 90px;
+  }
+  .step-text {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  /* ----------------------<DESTINATIONS*800>---------------------- */
+  .carousel {
+    height: 450px;
+  }
+  .destination-img {
+    width: 450px;
+    height: 450px;
+  }
+  /* ----------------------<STORIES*800>---------------------- */
+  /* ----------------------<FOOTER*800>---------------------- */
+  .footer-text {
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+  }
+}
+@media (max-width: 650px) {
+  /* ----------------------<BODY*650>---------------------- */
+  .body {
+    background: url(./assets/img/back-top.jpg) center top / 650px no-repeat,
+    url(./assets/img/back-bottom.jpg) center bottom / 650px no-repeat,
+    #E5E5E5;
+  }
+  /* ----------------------<HEAD*650>---------------------- */
+  .header {
+    min-height: 50px;
+  }
+  .logo-text {
+    font-size: 16px;
+  }
+  .nav-list {
+    font-size: 12px;
+  }
+  .button-login {
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+    border: 1px solid #0D606F;
+    margin-left: 5px;
+  }
+  /* ----------------------<PREVIEW*650>---------------------- */
+  .first-section {
+    height: 295px;
+  }
+  .section-title.first {
+    font-size: 46px;
+  }
+  .search-text {
+    font-size: 12px;
+  }
+  .search-input {
+    font-size: 18px;
+  }
+  .button {
+    width: 115px;
+    height: 35px;
+    font-size: 14px;
+    border: 1px solid #0D606F;
+  }
+  /* ----------------------<STEPS*650>---------------------- */
+  .section-title {
+    font-size: 18px;
+  }
+  .step-logo-block {
+    width: 80px;
+    height: 80px;
+  }
+  .step-logo.bicycle {
+    width: 40px;
+    height: 40px;
+  }
+  .step-logo.calendar {
+    width: 40px;
+    height: 40px;
+  }
+  .step-logo.plane {
+    width: 50px;
+    height: 35px;
+  }
+  /* ----------------------<DESTINATIONS*650>---------------------- */
+  .carousel {
+    height: 360px;
+  }
+  .destination-img {
+    width: 360px;
+    height: 360px;
+  }
+ /* ----------------------<FOOTER*650>---------------------- */
+ .footer {
+  padding: 0 15px;
+  }
+  .rs-school {
+    margin: 0;
+    padding: 0;
+  }
+  .social {
+    margin: 0;
+    padding: 0;
+  }
+  .rs-school {
+    width: 141px;
+  }
+  .rs-school-logo, .git-logo {
+    height: 34px;
+  }
+}
+@media (max-width: 500px) {
+  /* ----------------------<BODY*500>---------------------- */
+  .body {
+    background: url(./assets/img/back-top.jpg) center top / 500px no-repeat,
+    url(./assets/img/back-bottom.jpg) center bottom / 500px no-repeat,
+    #E5E5E5;
+  }
+  /* ----------------------<HEAD*500>---------------------- */
+  .header {
+    min-height: 40px;
+  }
+  .logo-text {
+    font-size: 16px;
+  }
+  .logo-text {
+    font-size: 12px;
+  }
+  .nav-list {
+    font-size: 9px;
+  }
+  .button-login {
+    width: 45px;
+    height: 24px;
+    font-size: 9px;
+  }
+  /* ----------------------<PREVIEW*500>---------------------- */
+  .first-section {
+    height: 226px;
+  }
+  .section-title.first {
+    font-size: 36px;
+  }
+  .search-text {
+    font-size: 10px;
+  }
+  .search-input {
+    width: 60%;
+    font-size: 16px;
+  }
+  .button {
+    width: 100px;
+    height: 32px;
+    font-size: 13px;
+  }
+  .step-logo-block {
+    width: 75px;
+    height: 75px;
+  }
+  /* ----------------------<STEPS*500>---------------------- */
+  .section-title {
+    font-size: 16px;
+  }
+  .step-logo.bicycle {
+    width: 36px;
+    height: 32px;
+  }
+  .step-logo.calendar {
+    width: 35px;
+    height: 35px;
+  }
+  .step-logo.plane {
+    width: 40px;
+    height: 30px;
+  }
+  /* ----------------------<DESTINATIONS*500>---------------------- */
+  .carousel {
+    height: 280px;
+  }
+  .destination-img {
+    width: 280px;
+    height: 280px;
+  }
+  /* ----------------------<FOOTER*500>---------------------- */
+  .footer-text {
+    font-size: 10px;
+  }
+}
+@media (max-width: 390px) {
+  /* ----------------------<BODY*390>---------------------- */
+  .body {
+    background: linear-gradient(180deg, #0D606F 0%, rgba(13, 96, 111, 0) 25.1%) center top / 390px 251px no-repeat,
+    url(./assets/img/back-top-390.jpg) center top / 390px no-repeat,
+    url(./assets/img/back-bottom-390.jpg) center bottom / 390px no-repeat,
+    #E5E5E5;
+  }
+  /* ----------------------<HEAD*390>---------------------- */
+  .header {
+    background: none;
+    box-shadow: none;
+    min-height: 32px;
+    margin-top: 43px;
+  }
+  .wrapper__header {
+    align-items: flex-end;
+  }
+  .index-link {
+    height: 30px;
+  }
+  .vector {
+    width: 29px;
+    margin: 0;
+  }
+  .logo-text {
+    display: none;
+  }
+  .nav {
+    display: none;
+  }
+  .button-login {
+    display: none;
+  }
+  .burger {
+    display: block;
+    cursor: pointer;
+    margin-right: 4px;
+  }
+  /* ----------------------<PREVIEW*390>---------------------- */
+  .first-section {
+    height: 176px;
+    background: 
+  }
+  .preview {
+    min-height: 48px;
+    width: 100%;
+    margin-top: 67px;
+  }
+  .section-title.first {
+    display: none;
+  }
+  .search-text {
+    display: none;
+  }
+  .search-form {
+    margin: 0;
+  }
+  .search-input {
+    font-size: 14px;
+    margin: 1px 0 0 15px;
+  }
+  .button {
+    width: 92px;
+    height: 30px;
+    font-size: 11px;
+    margin: 10px auto 0 auto;
+  }
+  .button.start {
+    margin: 9px;
+  }
+  /* ----------------------<STEPS*390>---------------------- */
+  .section-title, .section-title.destinations {
+    font-size: 14px;
+    line-height: 19px;
+    padding: 20px 0;
+  }
+  .section-title.steps {
+    padding: 19px 0 22px 0;
+  }
+  .step.calendar {
+    width: 120px;
+  }
+  .step-logo-block {
+    width: 70px;
+    height: 70px;
+  }
+  .step-text {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  /* ----------------------<DESTINATIONS*390>---------------------- */
+  .carousel {
+    height: 210px;
+  }
+  .picture img:first-child {
+    display: none;
+  }
+  .picture img:nth-child(2) {
+    display: block;
+  }
+  .picture.usa {
+    order: 0;
+  }
+  .destination-img {
+    width: 92.3vw;
+    height: 210px;
+  }
+  .destination-text {
+    margin: -202px 0 0 15px;
+    font-size: 20px;
+  }
+  .scroller {
+    position: relative;
+    margin-top: -20px;
+    padding-bottom: 12px;
+    gap: 1.6%;
+  }
+  .round {
+    width: 8px;
+    height: 8px;
+    background: rgba(242, 120, 92, 0.5);
+  }
+  .round.active {
+    order: -1;
+  }
+  .button-arrow {
+    Width: 10px;
+    Height: 10px;
+  }
+  .arrows {
+    position: relative;
+    width: 89.7vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -120px auto 90px auto;
+  }
+  /* ----------------------<STORIES*390>---------------------- */
+  .section-title.stories {
+    padding-bottom: 10px;
+  }
+  .stories-main {
+    padding-bottom: 13px;
+  }
+  .stories-body {
+    padding: 10px 15px 0 15px;
+    gap: 15px;
+  }
+  .story {
+    gap: 10px;
+  }
+  .story img:first-child {
+    display: none;
+  }
+  .story img:nth-child(2) {
+    display: block;
+  }
+  .story-description {
+    margin-top: 5px;
+  }
+  .story-title {
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+  }
+  .story-text.desktop {
+    display: none;
+  }
+  .story-text.mobile {
+    max-width: 195px;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;    
+    margin-top: 10px;
+    font-size: 9px;
+    line-height: 11px;
+   }
+  .story-link {
+    font-size: 9px;
+    height: 10px;
+  }
+  /* ----------------------<FOOTER*390>---------------------- */
+  .footer {
+    height: 65px;
+    justify-content: center;
+  }
+  .rs-school {
+    display: none;
+  }
+  .footer-text {
+    display: none;
+  }
+  .social {
+    margin: 2px 1px 0 9px;
+    padding: 0;
+  }
+}
+/* --------------------------</ADAPTIVE>-------------------------- */
