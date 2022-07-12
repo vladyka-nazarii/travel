@@ -50,6 +50,9 @@ html {
   url(./assets/img/back-bottom.jpg) center bottom no-repeat,
   #E5E5E5;
 }
+body.lock {
+  overflow: hidden;
+}
 /* --------------------------</BODY>-------------------------- */
 
 /* --------------------------<HEADER>-------------------------- */
@@ -99,8 +102,15 @@ html {
 .logo:hover .logo-text {
   color: #0D606F;
 }
-.nav {
+.menu {
+  display: flex;
   width: 47.5%;
+}
+.burger-close {
+  display: none;
+}
+.nav {
+  width: 100%;
   display: flex;
 }
 .nav-list {
@@ -113,6 +123,7 @@ html {
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
+  line-height: 21px;
   color: #FFFFFF;
   margin: 0;
   padding: 0;
@@ -122,6 +133,9 @@ html {
   color: #FFFFFF;
   margin: 5px;
   transition: 0.3s;
+}
+.nav-link.hide {
+  display: none;
 }
 .nav-link:hover {
   color: #0D606F;
@@ -579,7 +593,7 @@ input:focus::placeholder {
     #E5E5E5;
   }
   /* ----------------------<HEAD*1100>---------------------- */
-  .nav {
+  .menu {
     width: 80%;
   }
   .logo {
@@ -893,8 +907,60 @@ input:focus::placeholder {
   .logo-text {
     display: none;
   }
-  .nav {
-    display: none;
+    /* ----------------------<BURGER*390>---------------------- */
+  .menu {
+    width: 165px;
+    height: 250px;
+    position: fixed;
+    right: -165px;
+    top: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 6px;
+    background: #F2785C;
+    box-shadow: 0px 4px 3px rgba(13, 96, 111, 0.25);
+    border-radius: 10px;
+    transition: 0.3s;
+    z-index: 2;
+  }
+  .menu.active {
+    right: 0;
+  }
+  .overlay {
+    transition: 0.3s;
+  }
+  .overlay.active {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+  }
+  .burger-close {
+    display: block;
+    cursor: pointer;
+    align-self: flex-start;
+    margin: 8px 0 0 8px;
+  }
+  .burger-close:hover .burger-close-path {
+    fill: #0D606F;
+  }
+  .nav-list {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items : flex-end;
+    font-size: 16px;
+    line-height: 21px;
+    margin-right: 15px;
+    gap: 10px;
+  }
+  .nav-link.hide {
+    display: inline;
+  }
+  .nav-link {
+    margin: 0;
   }
   .button-login {
     display: none;
