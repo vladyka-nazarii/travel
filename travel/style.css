@@ -863,6 +863,7 @@ input:focus::placeholder {
     #E5E5E5;
   }
   /* ----------------------<POP-UP*650>---------------------- */
+  .pop-up {border-radius: 5px;}
   .pop-up__title-text {
     font-size: 24px;
     line-height: 30px;
@@ -870,6 +871,7 @@ input:focus::placeholder {
   .pop-up__button, .or-text, .pop-up__input {
     font-size: 16px;
     line-height: 18px;
+    border-radius: 5px;
   }
   .btn-logo {
     width: 21px;
