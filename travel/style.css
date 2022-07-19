@@ -208,6 +208,7 @@ body.lock {
   color: #0D606F;
   cursor: pointer;
 }
+.register {display: none;}
 /* --------------------------</POP-UP>-------------------------- */
 .wrapper__header {
   width: 1200px;
@@ -702,15 +703,9 @@ input:focus::placeholder {
   align-items: center;
   list-style: none;
 }
-.rs-school-logo-white {
-  transition: 0.3s;
-}
-.rs-school-logo-black {
-  transition: 0.3s;
-}
-.git-logo-path {
-  transition: 0.3s;
-}
+.rs-school-logo-white {transition: 0.3s;}
+.rs-school-logo-black {transition: 0.3s;}
+.git-logo-path {transition: 0.3s;}
 .footer-text {
   font-family: 'Red Hat Text', sans-serif;
   font-style: normal;
@@ -729,36 +724,14 @@ input:focus::placeholder {
   align-items: center;
   list-style: none;
 }
-.instagram-logo-path {
-  transition: 0.3s;
-}
-.youtube-logo-path {
-  transition: 0.3s;
-}
-.twitter-logo-path {
-  transition: 0.3s;
-}
-.footer-logo:hover .rs-school-logo-white {
-  fill: #000;
-}
-.footer-logo:hover .rs-school-logo-black {
-  fill: #fff;
-}
-.footer-logo:hover .git-logo-path {
-  fill: #000;
-}
-.footer-text:hover {
-  color: #000;
-}
-.footer-logo:hover .instagram-logo-path {
-  fill: #000;
-}
-.footer-logo:hover .youtube-logo-path {
-  stroke: #000;
-}
-.footer-logo:hover .twitter-logo-path {
-  fill: #000;
-}
+.instagram-logo-path, .youtube-logo-path, .twitter-logo-path {transition: 0.3s;}
+.footer-logo:hover .rs-school-logo-white {fill: #000;}
+.footer-logo:hover .rs-school-logo-black {fill: #fff;}
+.footer-logo:hover .git-logo-path {fill: #000;}
+.footer-text:hover {color: #000;}
+.footer-logo:hover .instagram-logo-path {fill: #000;}
+.footer-logo:hover .youtube-logo-path {stroke: #000;}
+.footer-logo:hover .twitter-logo-path {fill: #000;}
 /* --------------------------</FOOTER>-------------------------- */
 
 /* --------------------------<ADAPTIVE>-------------------------- */
@@ -770,30 +743,18 @@ input:focus::placeholder {
     #E5E5E5;
   }
   /* ----------------------<POP-UP*1100>---------------------- */
-  .pop-up {
-    width: 60%;
-  }
+  .pop-up {width: 60%;}
   /* ----------------------<HEAD*1100>---------------------- */
-  .menu {
-    width: 80%;
-  }
-  .logo {
-    width: 18%;
-  }
+  .menu {width: 80%;}
+  .logo {width: 18%;}
   .menu {
     width: 100%;
     margin: 0;
   }
   /* ----------------------<PREVIEW*1100>---------------------- */
-  .first-section {
-    height: 494px;
-  }
-  .section-title.first {
-    font-size: 75px;
-  }
-  .search-text {
-    font-size: 18px;
-  }
+  .first-section {height: 494px;}
+  .section-title.first {font-size: 75px;}
+  .search-text {font-size: 18px;}
   /* ----------------------<STEPS*1100>---------------------- */
   .section-title {
     font-size: 26px;
@@ -807,30 +768,20 @@ input:focus::placeholder {
   .section-title.destinations {
     padding: 50px 0 30px 0;
   }
-  .carousel {
-    height: 580px;
-  }
+  .carousel {height: 580px;}
   .destination-img {
     width: 580px;
     height: 580px;
   }
-  .fourth-section {
-    display: flex;
-  }
+  .fourth-section {display: flex;}
   /* ----------------------<STORIES*1100>---------------------- */
   .stories-body {
     gap: 15px;
     padding: 10px 15px;
   }
-  .story-photo {
-    width: 300px;
-  }
-  .story-title {
-    font-size: 28px;
-  }
-  .story-text, .story-link {
-    font-size: 18px;
-  }
+  .story-photo {width: 300px;}
+  .story-title {font-size: 28px;}
+  .story-text, .story-link {font-size: 18px;}
 }
 @media (max-width: 800px) {
   /* ----------------------<BODY*800>---------------------- */
@@ -840,33 +791,19 @@ input:focus::placeholder {
     #E5E5E5;
   }
   /* ----------------------<POP-UP*800>---------------------- */
-  .pop-up {
-    width: 70%;
-  }
+  .pop-up {width: 70%;}
   /* ----------------------<HEAD*800>---------------------- */
-  .header {
-    min-height: 60px;
-  }
-  .logo-text {
-    font-size: 22px;
-  }
+  .header {min-height: 60px;}
+  .logo-text {font-size: 22px;}
   .button-login {
     width: 80px;
     height: 35px;
   }
   /* ----------------------<PREVIEW*800>---------------------- */
-  .first-section {
-    height: 365px;
-  }
-  .section-title.first {
-    font-size: 60px;
-  }
-  .search-text {
-    font-size: 14px;
-  }
-  .search-input {
-    font-size: 20px;
-  }
+  .first-section {height: 365px;}
+  .section-title.first {font-size: 60px;}
+  .search-text {font-size: 14px;}
+  .search-input {font-size: 20px;}
   .button {
     width: 160px;
     height: 45px;
@@ -905,40 +842,26 @@ input:focus::placeholder {
     line-height: 16px;
   }
   /* ----------------------<DESTINATIONS*800>---------------------- */
-  .section-title.destinations {
-    padding: 30px 0 25px 0;
-  }
-  .carousel {
-    height: 450px;
-  }
+  .section-title.destinations {padding: 30px 0 25px 0;}
+  .carousel {height: 450px;}
   .destination-img {
     width: 450px;
     height: 450px;
   }
-  .destination-text {
-    font-size: 28px;
-  }
-  .button {
-    margin: 35px auto 0 auto;
-  }
+  .destination-text {font-size: 28px;}
+  .button {margin: 35px auto 0 auto;}
   .button-arrow {
     Width: 25px;
     Height: 25px;
   }
   /* ----------------------<STORIES*800>---------------------- */
-  .story {
-    gap: 20px;
-  }
-  .story-photo {
-    width: 250px;
-  }
+  .story {gap: 20px;}
+  .story-photo {width: 250px;}
   .story-title {
     font-weight: 700;
     font-size: 20px;
   }
-  .story-text, .story-link {
-    font-size: 14px;
-  }
+  .story-text, .story-link {font-size: 14px;}
   /* ----------------------<FOOTER*800>---------------------- */
   .footer-text {
     font-size: 14px;
@@ -971,15 +894,9 @@ input:focus::placeholder {
     line-height: 14px;
   }
   /* ----------------------<HEAD*650>---------------------- */
-  .header {
-    min-height: 50px;
-  }
-  .logo-text {
-    font-size: 16px;
-  }
-  .nav-list {
-    font-size: 12px;
-  }
+  .header {min-height: 50px;}
+  .logo-text {font-size: 16px;}
+  .nav-list {font-size: 12px;}
   .button-login {
     width: 60px;
     height: 30px;
@@ -988,18 +905,10 @@ input:focus::placeholder {
     margin-left: 5px;
   }
   /* ----------------------<PREVIEW*650>---------------------- */
-  .first-section {
-    height: 295px;
-  }
-  .section-title.first {
-    font-size: 46px;
-  }
-  .search-text {
-    font-size: 12px;
-  }
-  .search-input {
-    font-size: 18px;
-  }
+  .first-section {height: 295px;}
+  .section-title.first {font-size: 46px;}
+  .search-text {font-size: 12px;}
+  .search-input {font-size: 18px;}
   .button {
     width: 115px;
     height: 35px;
@@ -1007,9 +916,7 @@ input:focus::placeholder {
     border: 1px solid #0D606F;
   }
   /* ----------------------<STEPS*650>---------------------- */
-  .section-title {
-    font-size: 18px;
-  }
+  .section-title {font-size: 18px;}
   .step-logo-block {
     width: 80px;
     height: 80px;
@@ -1027,45 +934,31 @@ input:focus::placeholder {
     height: 35px;
   }
   /* ----------------------<DESTINATIONS*650>---------------------- */
-  .carousel {
-    height: 360px;
-  }
+  .carousel {height: 360px;}
   .destination-img {
     width: 360px;
     height: 360px;
   }
-  .destination-text {
-    font-size: 24px;
-  }
+  .destination-text {font-size: 24px;}
   .round {
     width: 15px;
     height: 15px;
   }
-  .button {
-    margin: 30px auto 0 auto;
-  }
+  .button {margin: 30px auto 0 auto;}
   .button-arrow {
     Width: 20px;
     Height: 20px;
   }
   /* ----------------------<STORIES*650>---------------------- */
-  .story {
-    gap: 15px;
-  }
-  .story-photo {
-    width: 200px;
-  }
+  .story {gap: 15px;}
+  .story-photo {width: 200px;}
   .story-title {
     font-weight: 700;
     font-size: 16px;
   }
-  .story-text, .story-link {
-    font-size: 11px;
-  }
+  .story-text, .story-link {font-size: 11px;}
  /* ----------------------<FOOTER*650>---------------------- */
- .footer {
-  padding: 0 15px;
-  }
+ .footer {padding: 0 15px;}
   .rs-school {
     margin: 0;
     padding: 0;
@@ -1074,12 +967,8 @@ input:focus::placeholder {
     margin: 0;
     padding: 0;
   }
-  .rs-school {
-    width: 141px;
-  }
-  .rs-school-logo, .git-logo {
-    height: 34px;
-  }
+  .rs-school {width: 141px;}
+  .rs-school-logo, .git-logo {height: 34px;}
 }
 @media (max-width: 500px) {
   /* ----------------------<BODY*500>---------------------- */
@@ -1094,33 +983,19 @@ input:focus::placeholder {
     line-height: 22px;
   }
   /* ----------------------<HEAD*500>---------------------- */
-  .header {
-    min-height: 40px;
-  }
-  .logo-text {
-    font-size: 16px;
-  }
-  .logo-text {
-    font-size: 12px;
-  }
-  .nav-list {
-    font-size: 9px;
-  }
+  .header {min-height: 40px;}
+  .logo-text {font-size: 16px;}
+  .logo-text {font-size: 12px;}
+  .nav-list {font-size: 9px;}
   .button-login {
     width: 45px;
     height: 24px;
     font-size: 9px;
   }
   /* ----------------------<PREVIEW*500>---------------------- */
-  .first-section {
-    height: 226px;
-  }
-  .section-title.first {
-    font-size: 36px;
-  }
-  .search-text {
-    font-size: 10px;
-  }
+  .first-section {height: 226px;}
+  .section-title.first {font-size: 36px;}
+  .search-text {font-size: 10px;}
   .search-input {
     width: 60%;
     font-size: 16px;
@@ -1135,9 +1010,7 @@ input:focus::placeholder {
     height: 75px;
   }
   /* ----------------------<STEPS*500>---------------------- */
-  .section-title {
-    font-size: 16px;
-  }
+  .section-title {font-size: 16px;}
   .step-logo.bicycle {
     width: 36px;
     height: 32px;
@@ -1155,42 +1028,30 @@ input:focus::placeholder {
     line-height: 14px;
   }
   /* ----------------------<DESTINATIONS*500>---------------------- */
-  .carousel {
-    height: 280px;
-  }
+  .carousel {height: 280px;}
   .destination-img {
     width: 280px;
     height: 280px;
   }
-  .destination-text {
-    font-size: 20px;
-  }
+  .destination-text {font-size: 20px;}
   .round {
     width: 10px;
     height: 10px;
   }
-  .button {
-    margin: 15px auto 0 auto;
-  }
+  .button {margin: 15px auto 0 auto;}
   .button-arrow {
     Width: 15px;
     Height: 15px;
   }
   /* ----------------------<STORIES*500>---------------------- */
-  .story-photo {
-    width: 160px;
-  }
+  .story-photo {width: 160px;}
   .story-title {
     font-weight: 700;
     font-size: 12px;
   }
-  .story-text, .story-link {
-    font-size: 10px;
-  }
+  .story-text, .story-link {font-size: 10px;}
   /* ----------------------<FOOTER*500>---------------------- */
-  .footer-text {
-    font-size: 10px;
-  }
+  .footer-text {font-size: 10px;}
 }
 @media (max-width: 390px) {
   /* ----------------------<BODY*390>---------------------- */
@@ -1207,19 +1068,13 @@ input:focus::placeholder {
     min-height: 32px;
     margin-top: 43px;
   }
-  .wrapper__header {
-    align-items: flex-end;
-  }
-  .index-link {
-    height: 30px;
-  }
+  .wrapper__header {align-items: flex-end;}
+  .index-link {height: 30px;}
   .vector {
     width: 29px;
     margin: 0;
   }
-  .logo-text {
-    display: none;
-  }
+  .logo-text {display: none;}
     /* ----------------------<BURGER*390>---------------------- */
   .menu {
     width: 165px;
@@ -1236,18 +1091,14 @@ input:focus::placeholder {
     transition: 0.3s;
     z-index: 2;
   }
-  .menu.active {
-    right: 0;
-  }
+  .menu.active {right: 0;}
   .burger-close {
     display: block;
     cursor: pointer;
     align-self: flex-start;
     margin: 8px 0 0 8px;
   }
-  .burger-close:hover .burger-close-path {
-    fill: #0D606F;
-  }
+  .burger-close:hover .burger-close-path {fill: #0D606F;}
   .nav-list {
     width: 100%;
     flex-direction: column;
@@ -1258,38 +1109,24 @@ input:focus::placeholder {
     margin-right: 15px;
     gap: 10px;
   }
-  .nav-link.hide {
-    display: inline;
-  }
-  .nav-link {
-    margin: 0;
-  }
-  .button-login {
-    display: none;
-  }
+  .nav-link.hide {display: inline;}
+  .nav-link {margin: 0;}
+  .button-login {display: none;}
   .burger {
     display: block;
     cursor: pointer;
     margin-right: 4px;
   }
   /* ----------------------<PREVIEW*390>---------------------- */
-  .first-section {
-    height: 176px;
-  }
+  .first-section {height: 176px;}
   .preview {
     min-height: 48px;
     width: 100%;
     margin-top: 67px;
   }
-  .section-title.first {
-    display: none;
-  }
-  .search-text {
-    display: none;
-  }
-  .search-form {
-    margin: 0;
-  }
+  .section-title.first {display: none;}
+  .search-text {display: none;}
+  .search-form {margin: 0;}
   .search-input {
     font-size: 14px;
     margin: 1px 0 0 15px;
@@ -1300,9 +1137,7 @@ input:focus::placeholder {
     font-size: 11px;
     margin: 10px auto 0 auto;
   }
-  .button.start {
-    margin: 9px;
-  }
+  .button.start {margin: 9px;}
   /* ----------------------<STEPS*390>---------------------- */
   .section-title, .section-title.destinations {
     font-size: 14px;
@@ -1324,31 +1159,17 @@ input:focus::placeholder {
     line-height: 12px;
   }
   /* ----------------------<DESTINATIONS*390>---------------------- */
-  .carousel {
-    height: 210px;
-  }
-  .carousel-overlay {
-    display: none;
-  }
-  .carousel.left {
-    left: 375px;
-  }
-  .carousel.right {
-    left: -375px;
-  }
-  .picture img:first-child {
-    display: none;
-  }
-  .picture img:nth-child(2) {
-    display: block;
-  }
+  .carousel {height: 210px;}
+  .carousel-overlay {display: none;}
+  .carousel.left {left: 375px;}
+  .carousel.right {left: -375px;}
+  .picture img:first-child {display: none;}
+  .picture img:nth-child(2) {display: block;}
   .destination-img {
     width: 92.3vw;
     height: 210px;
   }
-  .destination-text {
-    margin: -202px 0 0 15px;
-  }
+  .destination-text {margin: -202px 0 0 15px;}
   .scroller {
     position: relative;
     margin-top: -20px;
@@ -1372,39 +1193,23 @@ input:focus::placeholder {
     margin: -120px auto 90px auto;
   }
   /* ----------------------<STORIES*390>---------------------- */
-  .section-title.stories {
-    padding-bottom: 10px;
-  }
-  .stories-main {
-    padding-bottom: 13px;
-  }
+  .section-title.stories {padding-bottom: 10px;}
+  .stories-main {padding-bottom: 13px;}
   .stories-body {
     padding: 10px 15px 0 15px;
     gap: 15px;
   }
-  .story {
-    gap: 10px;
-  }
-  .story-photo {
-    width: 155px;
-  }
-  .story img:first-child {
-    display: none;
-  }
-  .story img:nth-child(2) {
-    display: block;
-  }
-  .story-description {
-    margin-top: 5px;
-  }
+  .story {gap: 10px;}
+  .story-photo {width: 155px;}
+  .story img:first-child {display: none;}
+  .story img:nth-child(2) {display: block;}
+  .story-description {margin-top: 5px;}
   .story-title {
     font-weight: 700;
     font-size: 11px;
     line-height: 13px;
   }
-  .story-text.desktop {
-    display: none;
-  }
+  .story-text.desktop {display: none;}
   .story-text.mobile {
     max-width: 195px;
     display: -webkit-box;
@@ -1425,12 +1230,8 @@ input:focus::placeholder {
     height: 65px;
     justify-content: center;
   }
-  .rs-school {
-    display: none;
-  }
-  .footer-text {
-    display: none;
-  }
+  .rs-school {display: none;}
+  .footer-text {display: none;}
   .social {
     margin: 2px 1px 0 9px;
     padding: 0;
