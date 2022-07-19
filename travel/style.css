@@ -84,7 +84,6 @@ body.lock {
 }
 /* --------------------------<POP-UP>-------------------------- */
 .pop-up {
-  /* display: none; */
   position: absolute;
   width: 650px;
   background: linear-gradient(177.09deg, #FFFFFF 6.15%, #0D606F 202.69%);
@@ -101,7 +100,7 @@ body.lock {
   transform: translate(-50%, -50%);
 }
 .pop-up__wrapper {
-  margin: 25px 45px 23px 45px;
+  margin: 4% 7%;
   display: flex;
   flex-direction: column;
 }
@@ -109,10 +108,9 @@ body.lock {
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
-  margin: 0 0 30px 0;
+  margin: 0 0 5.4% 0;
 }
 .pop-up__button {
-  height: 56px;
   font-family: 'Red Hat Text';
   font-style: normal;
   font-weight: 400;
@@ -122,15 +120,15 @@ body.lock {
   box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
   border-radius: 10px;
   border: 0;
-  padding: 0;
+  padding: 2.7% 0;
 }
 .facebook {
   background: #1877F2;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 2.5%;
+  margin-bottom: 3.5%;
 }
 .google {
   background: #FFFFFF;
@@ -138,24 +136,25 @@ body.lock {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 2.5%;
+  margin-bottom: 3.5%;
 }
 .sign {
-  height: 54px;
   background: #0D606F;
-  margin: 5px 0 10px 0;
+  padding: 2.6% 0;
+  margin: 1% 0 1.8% 0;
 }
 .or {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0;
+  gap: 1.6%;
+  margin: 1.8% 0;
 }
 .or-line {
-  width: 261px;
-  border: 1px solid rgba(13, 96, 111, 0.5);
+  width: 100%;
+  border-bottom: 1px solid rgba(13, 96, 111, 0.5);
 }
 .or-text {
   font-weight: 700;
@@ -171,7 +170,6 @@ body.lock {
   margin: 0;
 }
 .pop-up__input {
-  height: 54px;
   background: #FFFFFF;
   box-shadow: inset 0px 0px 3px rgba(13, 96, 111, 0.08), inset 0px 2px 3px rgba(13, 96, 111, 0.16);
   border-radius: 10px;
@@ -182,8 +180,8 @@ body.lock {
   font-weight: 400;
   font-size: 24px;
   color: #0D606F;
-  padding: 0;
-  margin: 5px 0 20px 0;
+  padding: 2.2% 0;
+  margin: 1% 0 3.5% 0;
 }
 .forgot {
   font-weight: 700;
@@ -191,11 +189,11 @@ body.lock {
   line-height: 18px;
   text-decoration-line: underline;
   text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
-  margin: 0 0 10px 0;
+  margin: 0 0 1.8% 0;
 }
 .bottom-line {
-  border: 1px solid rgba(13, 96, 111, 0.5);
-  margin: 16px 0 20px 0;
+  border-bottom: 1px solid rgba(13, 96, 111, 0.5);
+  margin: 2.8% 0 3.5% 0;
 }
 .bottom-text {
   font-weight: 700;
@@ -209,9 +207,6 @@ body.lock {
   text-decoration-line: underline;
   color: #0D606F;
   cursor: pointer;
-}
-.register {
-  display: none;
 }
 /* --------------------------</POP-UP>-------------------------- */
 .wrapper__header {
@@ -774,6 +769,10 @@ input:focus::placeholder {
     url(./assets/img/back-bottom.jpg) center bottom / 1100px no-repeat,
     #E5E5E5;
   }
+  /* ----------------------<POP-UP*1100>---------------------- */
+  .pop-up {
+    width: 60%;
+  }
   /* ----------------------<HEAD*1100>---------------------- */
   .menu {
     width: 80%;
@@ -839,6 +838,10 @@ input:focus::placeholder {
     background: url(./assets/img/back-top.jpg) center top / 800px no-repeat,
     url(./assets/img/back-bottom.jpg) center bottom / 800px no-repeat,
     #E5E5E5;
+  }
+  /* ----------------------<POP-UP*800>---------------------- */
+  .pop-up {
+    width: 70%;
   }
   /* ----------------------<HEAD*800>---------------------- */
   .header {
@@ -949,6 +952,23 @@ input:focus::placeholder {
     background: url(./assets/img/back-top.jpg) center top / 650px no-repeat,
     url(./assets/img/back-bottom.jpg) center bottom / 650px no-repeat,
     #E5E5E5;
+  }
+  /* ----------------------<POP-UP*650>---------------------- */
+  .pop-up__title-text {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .pop-up__button, .or-text, .pop-up__input {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .btn-logo {
+    width: 21px;
+    height: 20px;
+  }
+  .pop-up__left-text, .forgot, .bottom-text {
+    font-size: 12px;
+    line-height: 14px;
   }
   /* ----------------------<HEAD*650>---------------------- */
   .header {
@@ -1067,6 +1087,11 @@ input:focus::placeholder {
     background: url(./assets/img/back-top.jpg) center top / 500px no-repeat,
     url(./assets/img/back-bottom.jpg) center bottom / 500px no-repeat,
     #E5E5E5;
+  }
+  /* ----------------------<POP-UP*500>---------------------- */
+  .pop-up__title-text {
+    font-size: 20px;
+    line-height: 22px;
   }
   /* ----------------------<HEAD*500>---------------------- */
   .header {
