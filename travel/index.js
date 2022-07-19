@@ -25,6 +25,10 @@ document.querySelector('.button-login').addEventListener("click", () => {       
 document.querySelector('.pop-up').addEventListener("click", (event) => {                          //listen click on .pop-up
   if (event.target.className === 'last-text-register') {register()                                //change .pop-up to login by click on .last-text-register
 } else if (event.target.className === 'last-text-login') {login()}});                             //change .pop-up to register by click on .last-text-login
+document.querySelector('.sign').addEventListener("click", () => {
+  closeMenu();
+  alert('E-mail: '+ document.getElementById('email').value +'\n\nPassword: ' + document.getElementById('password').value);
+});
 // BURGER MENU
 const openMenu = () => {
   document.querySelector('.menu').classList.add('active');                                        //open .menu
@@ -42,7 +46,8 @@ document.querySelector('.nav-list').addEventListener("click", (event)=>{
   if (event.target.className !== 'nav-link nav-login hide') {closeMenu()}                         //close .menu by click on .nav-list
   else {document.querySelector('.menu').classList.remove('active');                               //close .menu by click on .nav-list
         document.querySelector('.pop-up').classList.add('slideout');}});                          //open .pop-up by click on .nav-login
-document.querySelector('.overlay').addEventListener("click", ()=>{closeMenu()});                  //close .menu by click on .overlay
+document.querySelector('.overlay').addEventListener("click", ()=>{closeMenu()});                  //close .pop-up & .menu by click on .overlay
+document.addEventListener('keydown', (event)=>{if (event.key === 'Escape') {closeMenu()}});       //close .pop-up & .menu by Escape key
 // SLIDER
 let order = 0;                                                                                    //create var order
 const setOrder = () => document.querySelector(':root').style.setProperty('--order', order);       //set css var(--order) = order
