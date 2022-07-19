@@ -100,7 +100,7 @@ body.lock {
   transform: translate(-50%, -50%);
 }
 .pop-up__wrapper {
-  margin: 4% 7%;
+  margin: 3.847% 6.925% 3.54% 6.925%;
   display: flex;
   flex-direction: column;
 }
@@ -108,7 +108,7 @@ body.lock {
   font-weight: 700;
   font-size: 32px;
   line-height: 38px;
-  margin: 0 0 5.4% 0;
+  margin: 0 0 5.36% 0;
 }
 .pop-up__button {
   font-family: 'Red Hat Text';
@@ -120,7 +120,8 @@ body.lock {
   box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
   border-radius: 10px;
   border: 0;
-  padding: 2.7% 0;
+  cursor: pointer;
+  padding: 2.68% 0;
 }
 .facebook {
   background: #1877F2;
@@ -128,7 +129,8 @@ body.lock {
   align-items: center;
   justify-content: center;
   gap: 2.5%;
-  margin-bottom: 3.5%;
+  margin-bottom: 3.574%;
+  transition: 0.3s;
 }
 .google {
   background: #FFFFFF;
@@ -137,12 +139,20 @@ body.lock {
   align-items: center;
   justify-content: center;
   gap: 2.5%;
-  margin-bottom: 3.5%;
+  margin-bottom: 3.574%;
+  transition: 0.3s;
+}
+.google:hover, .facebook:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .sign {
   background: #0D606F;
-  padding: 2.6% 0;
-  margin: 1% 0 1.8% 0;
+  padding: 2.5% 0;
+  margin: 0.895% 0 1.787% 0;
+  transition: 0.3s;
+}
+.sign:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .or {
   width: 100%;
@@ -150,7 +160,7 @@ body.lock {
   justify-content: space-between;
   align-items: center;
   gap: 1.6%;
-  margin: 1.8% 0;
+  margin: 1.787% 0;
 }
 .or-line {
   width: 100%;
@@ -180,8 +190,8 @@ body.lock {
   font-weight: 400;
   font-size: 24px;
   color: #0D606F;
-  padding: 2.2% 0;
-  margin: 1% 0 3.5% 0;
+  padding: 2.205% 2.5%;
+  margin: 0.895% 0 3.574% 0;
 }
 .forgot {
   font-weight: 700;
@@ -189,11 +199,15 @@ body.lock {
   line-height: 18px;
   text-decoration-line: underline;
   text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
-  margin: 0 0 1.8% 0;
+  cursor: pointer;
+  margin: 0 0 1.787% 0;
+}
+.forgot:hover, .last-text-register:hover, .last-text-login:hover {
+  color: #000;
 }
 .bottom-line {
   border-bottom: 1px solid rgba(13, 96, 111, 0.5);
-  margin: 2.8% 0 3.5% 0;
+  margin: 2.859% 0 3.574% 0;
 }
 .bottom-text {
   font-weight: 700;
@@ -226,9 +240,7 @@ body.lock {
   margin-right: 6px;
   margin-bottom: 4%;
 }
-.vector-path {
-  transition: 0.3s;
-}
+.vector-path {transition: 0.3s;}
 .logo-text {
   font-family: 'Magra', sans-serif;
   font-style: normal;
@@ -237,39 +249,20 @@ body.lock {
   color: #FFFFFF;
   transition: 0.3s;
 }
-.index-link {
-  text-decoration: none;
-}
-.logo:hover .vector-path {
-  fill: #0D606F;
-}
-.logo:hover .logo-text {
-  color: #0D606F;
-}
+.index-link {text-decoration: none;}
+.logo:hover .vector-path {fill: #0D606F;}
+.logo:hover .logo-text {color: #0D606F;}
 /* --------------------------<BURGER-MENU>-------------------------- */
 .menu {
   display: flex;
   width: 53%;
   margin-left: 5.5%;
 }
-.burger-close {
-  display: none;
-}
-.burger {
-  display: none;
-}
-.burger-path {
-  transition: 0.3s;
-}
-.burger:hover .burger-path {
-  fill: #0D606F;
-}
-.overlay {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  transition: 0.3s;
-}
+.burger-close {display: none;}
+.burger {display: none;}
+.burger-path {transition: 0.3s;}
+.burger:hover .burger-path {fill: #0D606F;}
+.overlay {transition: 0.3s;}
 .overlay.active {
   position: absolute;
   width: 100%;
@@ -324,12 +317,12 @@ body.lock {
   font-weight: 500;
   font-size: 16px;
   color: #FFFFFF;
+  cursor: pointer;
   margin-left: 2.6%;
   transition: 0.3s;
 }
 .button-login:hover {
-  background: #FFFFFF;
-  color: #0D606F;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 /* --------------------------</HEADER>-------------------------- */
 
@@ -425,14 +418,11 @@ input:focus::placeholder {
   align-items: center;
   justify-content: center;
   gap: 7%;
+  cursor: pointer;
   transition: 0.3s;
 }
 .button:hover {
-  background: #FFFFFF;
-  color: #0D606F;
-}
-.button:hover img:last-child {
-  display: block;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .button.start {
   margin: 2%;
@@ -607,9 +597,6 @@ input:focus::placeholder {
 }
 .button-arrow-path {
   transition: 0.3s;
-}
-.button:hover .button-arrow-path {
-  fill: #0D606F;
 }
 /* --------------------------</DESTINATIONS>-------------------------- */
 
