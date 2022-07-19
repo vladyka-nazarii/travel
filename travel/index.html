@@ -27,7 +27,7 @@
             <li><a href="#steps" class="nav-link">Plan Your Trip</a></li>
             <li><a href="#destinations" class="nav-link">Destinations</a></li>
             <li><a href="#stories" class="nav-link">Travel Stories</a></li>
-            <li><a href="#" class="nav-link hide">Account</a></li>
+            <li><a href="#" class="nav-link nav-login hide">Account</a></li>
             <li><a href="#social" class="nav-link hide">Social Media</a></li>
           </ul>
         </nav>
@@ -90,7 +90,17 @@
       <section class="destinations">
         <h2 class="section-title destinations" id="destinations">POPULAR DESTINATIONS</h2>
         <div class="carousel">
-          <div class="picture spain">
+          <div class="carousel-overlay">
+            <div class="left-click"></div>
+            <div class="center-click"></div>
+            <div class="right-click"></div>
+          </div>
+          <div class="picture">
+            <img class="destination-img" src="./assets/img/usa.jpg" alt="usa">
+            <img class="destination-img" src="./assets/img/usa-390.jpg" alt="usa">
+            <span class="destination-text">USA</span>
+          </div>
+          <div class="picture">
             <img class="destination-img" src="./assets/img/spain.jpg" alt="spain">
             <img class="destination-img" src="./assets/img/spain-390.jpg" alt="spain">
             <span class="destination-text">SPAIN</span>
@@ -105,6 +115,19 @@
             <img class="destination-img" src="./assets/img/usa-390.jpg" alt="usa">
             <span class="destination-text">USA</span>
           </div>
+          <div class="picture">
+            <img class="destination-img" src="./assets/img/spain.jpg" alt="spain">
+            <img class="destination-img" src="./assets/img/spain-390.jpg" alt="spain">
+            <span class="destination-text">SPAIN</span>
+          </div>
+        </div>
+        <div class="arrows">
+          <svg class="left-arrow" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.0757 26.9325C20.4272 26.5809 20.6246 26.1041 20.6246 25.6069C20.6246 25.1097 20.4272 24.6329 20.0757 24.2813L10.7944 15L20.0757 5.71875C20.4172 5.36512 20.6062 4.89149 20.6019 4.39987C20.5976 3.90825 20.4005 3.43798 20.0528 3.09034C19.7052 2.7427 19.2349 2.54551 18.7433 2.54124C18.2517 2.53696 17.778 2.72595 17.4244 3.0675L6.81753 13.6744C6.46602 14.026 6.26855 14.5028 6.26855 15C6.26855 15.4972 6.46602 15.974 6.81753 16.3256L17.4244 26.9325C17.776 27.284 18.2528 27.4815 18.75 27.4815C19.2472 27.4815 19.724 27.284 20.0757 26.9325Z" fill="#F2785C"/>
+          </svg>
+          <svg class="right-arrow" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.92435 3.0675C9.57284 3.41911 9.37537 3.89594 9.37537 4.39312C9.37537 4.89031 9.57284 5.36713 9.92435 5.71875L19.2056 15L9.92435 24.2812C9.5828 24.6349 9.39381 25.1085 9.39808 25.6001C9.40235 26.0917 9.59955 26.562 9.94719 26.9097C10.2948 27.2573 10.7651 27.4545 11.2567 27.4588C11.7483 27.463 12.222 27.274 12.5756 26.9325L23.1825 16.3256C23.534 15.974 23.7314 15.4972 23.7314 15C23.7314 14.5028 23.534 14.026 23.1825 13.6744L12.5756 3.0675C12.224 2.71599 11.7472 2.51852 11.25 2.51852C10.7528 2.51852 10.276 2.71599 9.92435 3.0675Z" fill="#F2785C"/>
+          </svg>
         </div>
         <div class="arrows">
           <svg class="left-arrow" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +139,7 @@
         </div>
         <div class="scroller">
           <div class="round"></div>
-          <div class="round active"></div>
+          <div class="filled round"></div>
           <div class="round"></div>
         </div>
         <button class="button find"><svg class="button-arrow" width="40" height="40" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -179,6 +202,31 @@
       </section>
     </div>
     <div class="overlay"></div>
+    <div class="pop-up">
+      <div class="pop-up__wrapper">
+        <p class="pop-up__title-text">Log in to your account</p>
+        <button class="pop-up__button facebook"><svg class="btn-logo" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" transform="translate(0.5)" fill="#1877F2"/>
+          <path d="M24 12.0699C24 5.71857 18.8513 0.569853 12.5 0.569853C6.14872 0.569853 1 5.71857 1 12.0699C1 17.8098 5.20538 22.5674 10.7031 23.4301V15.3941H7.7832V12.0699H10.7031V9.53626C10.7031 6.65407 12.42 5.06204 15.0468 5.06204C16.305 5.06204 17.6211 5.28665 17.6211 5.28665V8.11673H16.171C14.7424 8.11673 14.2969 9.00319 14.2969 9.91264V12.0699H17.4863L16.9765 15.3941H14.2969V23.4301C19.7946 22.5674 24 17.8098 24 12.0699Z" fill="white"/>
+          </svg>Sign In with Facebook</button>
+        <button class="pop-up__button google"><svg class="btn-logo" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" transform="translate(0.5)" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M23.54 12.2614C23.54 11.4459 23.4668 10.6618 23.3309 9.90909H12.5V14.3575H18.6891C18.4225 15.795 17.6123 17.013 16.3943 17.8284V20.7139H20.1109C22.2855 18.7118 23.54 15.7636 23.54 12.2614Z" fill="#4285F4"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 23.4998C15.605 23.4998 18.2081 22.4701 20.1109 20.7137L16.3943 17.8282C15.3645 18.5182 14.0472 18.926 12.5 18.926C9.50474 18.926 6.96951 16.903 6.06519 14.1848H2.22314V17.1644C4.11542 20.9228 8.00451 23.4998 12.5 23.4998Z" fill="#34A853"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.06523 14.1851C5.83523 13.4951 5.70455 12.758 5.70455 12.0001C5.70455 11.2421 5.83523 10.5051 6.06523 9.81506V6.83552H2.22318C1.44432 8.38802 1 10.1444 1 12.0001C1 13.8557 1.44432 15.6121 2.22318 17.1646L6.06523 14.1851Z" fill="#FBBC05"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 5.07386C14.1884 5.07386 15.7043 5.65409 16.8961 6.79364L20.1945 3.49523C18.2029 1.63955 15.5997 0.5 12.5 0.5C8.00451 0.5 4.11542 3.07705 2.22314 6.83545L6.06519 9.815C6.96951 7.09682 9.50474 5.07386 12.5 5.07386Z" fill="#EA4335"/>
+          </svg>Sign In with Google</button>
+        <div class="or"><div class="or-line"></div><p class="or-text">or</p><div class="or-line"></div></div>
+        <p class="pop-up__left-text">E-mail</p>
+        <input class="pop-up__input" type="email" name="" id="email">
+        <p class="pop-up__left-text">Password</p>
+        <input class="pop-up__input" type="password" name="" id="password">
+        <button class="pop-up__button sign" type="submit">Sign In</button>
+        <p class="forgot">Forgot Your Password?</p>
+        <div class="bottom-line"></div>
+        <p class="bottom-text">Don’t have an account? <span class="last-text-register">Register</span></p>
+      </div>
+    </div>
   </main>
   <footer class="footer" id="social">
     <div class="rs-school">
@@ -225,6 +273,7 @@
       </li>
     </ul>
   </footer>
+  <script src="index.js"></script>
 </body>
 <script src="index.js"></script>
 </html>
