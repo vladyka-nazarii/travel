@@ -39,7 +39,7 @@ const closeMenu = () => {
   document.querySelector('.overlay').classList.remove('active');                                  //make .overlay unvisible
   document.body.classList.remove('lock');                                                         //unlock scroll
   document.querySelector('.pop-up').classList.remove('slideout');                                 //close .pop-up
-  document.querySelector('.pop-up').ontransitionend = () => {login()}};                           //change .pop-up to login
+  document.querySelector('.pop-up').ontransitionend = (e) => {if (e.target.className === 'pop-up') {login()}}};    //change .pop-up to login
 document.querySelector('.burger').addEventListener("click", ()=>{openMenu()});                    //open .menu by click on .burger
 document.querySelector('.burger-close').addEventListener("click", ()=>{closeMenu()});             //close .menu by click on .burger-close
 document.querySelector('.nav-list').addEventListener("click", (event)=>{
