@@ -1,4 +1,5 @@
 // 1. TIME & DATE
+
 const time = document.querySelector('.time');                                  //find time
 function showTime() {                                                          //func to update time, date, greeting every 1 sec
   time.textContent = new Date().toLocaleTimeString();
@@ -10,7 +11,9 @@ const date = document.querySelector('.date');                                  /
 function showDate() {                                                          //func to set date
   date.textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'});
 }
+
 // 2. GREETING
+
 const greeting = document.querySelector('.greeting');                          //find greeting
 const name = document.querySelector('.name');                                  //find name
 showTime();                                                                    //update time, date, greeting
@@ -18,20 +21,9 @@ function showGreeting() {                                                      /
   const timeOfDay = ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'];
   greeting.textContent = timeOfDay[Math.floor((new Date().getHours())/6)]
 }
-function setLocalStorage() {                                                   //func to save name & city to local storage
-  localStorage.setItem('name', name.value);
-  localStorage.setItem('city', city.value);
-}
-window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
-function getLocalStorage() {                                                   //func to get name & city from local storage and write them to the page
-  if(localStorage.getItem('name')) {
-    name.value = localStorage.getItem('name');
-  } if(localStorage.getItem('city')) {
-    city.value = localStorage.getItem('city');
-  }
-}
-window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page
+
 // 3. SLIDER
+
 const body = document.querySelector('body');                                   //find body
 const slideNext = document.querySelector('.slide-next');                       //find btn slide next bg
 const SlidePrev = document.querySelector('.slide-prev');                       //find btn slide prev bg
@@ -59,12 +51,9 @@ function getSlideNext() {                                                      /
 }
 SlidePrev.addEventListener('click', getSlidePrev);                             //change bg after left click
 slideNext.addEventListener('click', getSlideNext);                             //change bg after right click
-function getSlide(event) {                                                     //func to change bg after left arrow or right arrow pressed
-  if (event.code === 'ArrowLeft') {getSlidePrev()}
-  if (event.code === 'ArrowRight') {getSlideNext()}
-}
-document.addEventListener('keydown', getSlide);                                //change bg by pressing arrow keys
-// 4. WEATHER 
+
+// 4. WEATHER
+
 const weatherIcon = document.querySelector('.weather-icon');                   //find weather icon
 const temperature = document.querySelector('.temperature');                    //find temperature
 const weatherError = document.querySelector('.weather-error');                 //find weather error
@@ -102,7 +91,9 @@ function setCity(event) {                                                      /
 }
 city.addEventListener('keypress', setCity);                                    //update weather by pressing enter key
 document.addEventListener('DOMContentLoaded', getWeather);                     //update weather after page fully loaded
-// 5. QUOTES 
+
+// 5. QUOTES
+
 const changeQuote = document.querySelector('.change-quote');                   //find arrows to change quote
 const quote = document.querySelector('.quote');                                //find quote
 const author = document.querySelector('.author');                              //find author
@@ -116,87 +107,203 @@ async function getQuotes() {                                                   /
 }
 getQuotes();                                                                   //set new quote
 changeQuote.addEventListener('click', getQuotes);                              //change quote by click on arrows
+
 // 6. PLAYER
-const playBtn = document.querySelector('.play');                               //find btn play
-const prevBtn = document.querySelector('.play-prev');                          //find btn prev
-const nextBtn = document.querySelector('.play-next');                          //find btn next
+
+import playList from './playList.js';                                          //import playlist
+const prevBtn = document.querySelector('.prev-button');                        //find btn prev
+const playBtn = document.querySelector('.play-button');                        //find btn play
+const nextBtn = document.querySelector('.next-button');                        //find btn next
+const playListContainer = document.querySelector('.playlist-container');       //find playList container
+const playListItemContent = `
+  <div class="item-container">
+  <div class="item-cover">
+    <div class="image-container">
+      <img class="image-cover" src="" alt="cover">
+    </div>
+    <div class="icon-container">
+      <svg viewBox="0 0 36 36" fill="#fff" class="item-play-icon playlist-icon">
+        <path d="M12.233 7.68l15.75 10.124c.69.443.69 1.45 0 1.892L12.233 29.82a1.125 1.125 0 0 1-1.733-.947V8.627c0-.89.985-1.428 1.733-.947z"></path>
+      </svg>
+      <svg viewBox="0 0 100 100" fill="#fff" class="item-playing-icon playlist-icon">
+        <g transform="rotate(180 50 50)">
+          <rect height="72.4964" x="15" width="20">
+            <animate attributeName="height" calcMode="spline" values="50;75;10;50" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1" repeatCount="indefinite" begin="-0.6666666666666666s" dur="1s"></animate>
+          </rect>
+          <rect height="11.5407" x="40" width="20">
+            <animate attributeName="height" calcMode="spline" values="50;75;10;50" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1" repeatCount="indefinite" begin="0s" dur="1s"></animate>
+          </rect>
+          <rect height="50.9629" x="65" width="20">
+            <animate attributeName="height" calcMode="spline" values="50;75;10;50" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1" repeatCount="indefinite" begin="-0.3333333333333333s" dur="1s"></animate>
+          </rect>
+        </g>
+      </svg>
+      <svg viewBox="0 0 24 24" fill="#fff" class="item-pause-icon playlist-icon">
+        <path d="M10 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4zm8 0a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4z"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="item-info">
+    <div class="item-title"></div>
+    <div class="item-author"></div>
+  </div>
+  <div class="item-duration"></div>
+  </div>`;
+playList.forEach(element => {                                                  //fill playList container with playlist
+  const playListItem = document.createElement('div');
+  playListItem.classList.add('item-component');
+  playListItem.innerHTML = playListItemContent;
+  playListItem.querySelector('.image-cover').src = element.cover;
+  playListItem.querySelector('.item-title').textContent = element.title;
+  playListItem.querySelector('.item-author').textContent = element.author;
+  playListItem.querySelector('.item-duration').textContent = element.duration;
+  playListContainer.append(playListItem)
+});
+const playItems = document.querySelectorAll('.item-component');                //find all playlist items to make one active when playing
 const audio = new Audio();                                                     //make audio player
+audio.volume = .75;
 let isPlay = false;                                                            //set is track playing to false
 let playNum = 0;                                                               //set number of track in playlist to 0
+let pauseNum;
+playItems[playNum].querySelector('.icon-container').classList.add('item-active');
+const bigCover = document.querySelector('.big-cover-image');
+const coverTitle = document.querySelector('.cover-title');
+const coverAuthor = document.querySelector('.cover-author');
+const playListBtn = document.querySelector('.playlist-button');
+playListBtn.addEventListener('click', () => playListContainer.classList.toggle('hide-playlist'));
+bigCover.src = playList[playNum].cover;
+coverTitle.innerHTML = playList[playNum].title;
+coverAuthor.innerHTML = playList[playNum].author;
 function playAudio() {                                                         //func to play track
   if (isPlay) {
-    audio.pause();
-    isPlay = false;
-    playBtn.classList.remove('pause');
+    if (playNum === pauseNum) {
+      audio.pause();
+      isPlay = false;
+      playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
+      playBtn.classList.remove('pause');
+    } else {
+      audio.src = playList[playNum].src;
+      audio.currentTime = 0;
+      audio.play();
+      isPlay = true;
+      pauseNum = playNum;
+      playBtn.classList.add('pause');
+      bigCover.src = playList[playNum].cover;
+      coverTitle.innerHTML = playList[playNum].title;
+      coverAuthor.innerHTML = playList[playNum].author;
+      playItems[playNum].querySelector('.icon-container').classList.add('item-active');
+      playItems[playNum].querySelector('.icon-container').classList.add('item-playing');
+    }
   } else {
-  audio.src = playList[playNum].src;
-  audio.currentTime = 0;
-  audio.play();
-  isPlay = true;
-  playBtn.classList.add('pause');
-  playItems[0].classList.add('item-active');
-  }
+    if (playNum === pauseNum) {
+      audio.play();
+      isPlay = true;
+      playBtn.classList.add('pause');
+      playItems[playNum].querySelector('.icon-container').classList.add('item-playing');
+    } else {
+    audio.src = playList[playNum].src;
+    audio.currentTime = 0;
+    audio.play();
+    isPlay = true;
+    pauseNum = playNum;
+    playBtn.classList.add('pause');
+    bigCover.src = playList[playNum].cover;
+    coverTitle.innerHTML = playList[playNum].title;
+    coverAuthor.innerHTML = playList[playNum].author;
+    playItems[playNum].querySelector('.icon-container').classList.add('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.add('item-playing');
+  }}
 }
-playBtn.addEventListener('click', playAudio);                                  //play track by click on play btn
 function playPrev() {                                                          //func to play prev track
   if (playNum === 0) {
-    playItems[playNum].classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
     playNum = playList.length - 1;
-    audio.src = playList[playNum].src;
-    audio.currentTime = 0;
-    audio.play();
-    playItems[playNum].classList.add('item-active');
-    if (!isPlay) {
-      isPlay = true;
-      playBtn.classList.add('pause');
-    }
+    playAudio();
   } else {
-    playItems[playNum].classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
     playNum--;
-    audio.src = playList[playNum].src;
-    audio.currentTime = 0;
-    audio.play();
-    playItems[playNum].classList.add('item-active');
-    if (!isPlay) {
-      isPlay = true;
-      playBtn.classList.add('pause');
-    }
+    playAudio();
   }
 }
 function playNext() {                                                          //func to play next track
   if (playNum === playList.length - 1) {
-    playItems[playNum].classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
     playNum = 0;
-    audio.src = playList[playNum].src;
-    audio.currentTime = 0;
-    audio.play();
-    playItems[playNum].classList.add('item-active');
-    if (!isPlay) {
-      isPlay = true;
-      playBtn.classList.add('pause');
-    }
+    playAudio();
   } else {
-    playItems[playNum].classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
     playNum++;
-    audio.src = playList[playNum].src;
-    audio.currentTime = 0;
-    audio.play();
-    playItems[playNum].classList.add('item-active');
-    if (!isPlay) {
-      isPlay = true;
-      playBtn.classList.add('pause');
-    }
+    playAudio();
   }
 }
+playBtn.addEventListener('click', playAudio);                                  //play track by click on play btn
 prevBtn.addEventListener('click', playPrev);                                   //play play prev track by click on prev btn
 nextBtn.addEventListener('click', playNext);                                   //play play next track by click on next btn
-import playList from './playList.js';                                          //import playlist
-const playListContainer = document.querySelector('.play-list');                //find playList container
-playList.forEach(element => {                                                  //func to fill playList container with playlist
-  const li = document.createElement('li');
-  li.classList.add('play-item');
-  li.textContent = element.title;
-  playListContainer.append(li)
-})
-const playItems = document.querySelectorAll('.play-item');                     //find all playlist items to make one active when playing
+playItems.forEach((element, index) => element.addEventListener('click', () => {
+  if (playNum !== index) {
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
+    playNum = index;
+  }
+  playAudio()
+}));
 audio.onended = () => playNext();                                              //play next track when track ended
+// 6. ADDITIONAL FUNCTIONAL
+function someAction(event) {
+  if (event.target.nodeName === 'BODY') {
+    if (event.code === 'ArrowLeft') {getSlidePrev()}                             //func to change bg by left arrow
+    if (event.code === 'ArrowRight') {getSlideNext()}                            //func to change bg by right arrow
+    if (event.code === 'ArrowUp') {playPrev()}                                   //func to play prev track by up arrow
+    if (event.code === 'ArrowDown') {playNext()}                                 //func to play next track by down arrow
+    if (event.code === 'Space') {playAudio()}                                    //func to play audio by space
+    if (event.code === 'Enter') {getQuotes()}                                    //func to change quote by enter
+  }
+}
+document.addEventListener('keydown', someAction);                                //some action by pressing keys
+
+function setName(event) {                                                      //func to set name
+  if (event.code === 'Enter') {
+    name.blur();
+  }
+}
+name.addEventListener('keypress', setName);
+
+function setLocalStorage() {                                                   //func to save name & city to local storage
+  localStorage.setItem('name', name.value);
+  localStorage.setItem('city', city.value);
+  localStorage.setItem('playNum', playNum);
+  localStorage.setItem('pauseNum', pauseNum);
+  localStorage.setItem('duration', audio.currentTime);
+}
+function getLocalStorage() {                                                   //func to get name & city from local storage and write them to the page
+  if(localStorage.getItem('name')) {
+    name.value = localStorage.getItem('name');
+  } if(localStorage.getItem('city')) {
+    city.value = localStorage.getItem('city');
+  }
+  // if(localStorage.getItem('playNum')) {
+  //   console.log('Set playNum');
+  //   playNum = localStorage.getItem('playNum');
+  // } if(localStorage.getItem('city')) {
+  //   city.value = localStorage.getItem('city');
+  // } if(localStorage.getItem('city')) {
+  //   city.value = localStorage.getItem('city');
+  // }
+}
+
+window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
+window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page
+
+
+//click volume slider to change volume
+const volumeSlider = document.querySelector(".volume-slider");
+volumeSlider.addEventListener('click', e => {
+  const sliderWidth = window.getComputedStyle(volumeSlider).width;
+  const newVolume = e.offsetX / parseInt(sliderWidth);
+  audio.volume = newVolume;
+  document.querySelector(".volume-percentage").style.width = newVolume * 100 + '%';
+}, false)
