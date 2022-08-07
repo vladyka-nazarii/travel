@@ -220,6 +220,7 @@ function playAudio() {
       isPlay = false;
       playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
       playBtn.classList.remove('pause');
+      playBtn.title = "Play"
     } else {
       setPlayer();
       audio.currentTime = 0;
@@ -228,6 +229,11 @@ function playAudio() {
       pauseNum = playNum;
       playBtn.classList.add('pause');
       playItems[playNum].querySelector('.icon-container').classList.add('item-playing');
+      playBtn.title = "Play";
+      if (playNum === 0 && repeat !== 1) prevBtn.classList.add('inactive')
+      else prevBtn.classList.remove('inactive');
+      if (playNum === playList.length - 1 && repeat !== 1) nextBtn.classList.add('inactive')
+      else nextBtn.classList.remove('inactive')
     }
   } else {
     if (playNum === pauseNum) {
@@ -235,6 +241,7 @@ function playAudio() {
       isPlay = true;
       playBtn.classList.add('pause');
       playItems[playNum].querySelector('.icon-container').classList.add('item-playing');
+      playBtn.title = "Pause"
     } else {
     setPlayer();
     audio.currentTime = 0;
@@ -243,34 +250,47 @@ function playAudio() {
     pauseNum = playNum;
     playBtn.classList.add('pause');
     playItems[playNum].querySelector('.icon-container').classList.add('item-playing');
+    playBtn.title = "Pause";
+    if (playNum === 0 && repeat !== 1) prevBtn.classList.add('inactive')
+    else prevBtn.classList.remove('inactive');
+    if (playNum === playList.length - 1 && repeat !== 1) nextBtn.classList.add('inactive')
+    else nextBtn.classList.remove('inactive')
   }}
 }
 
 //func to play prev track
 function playPrev() {
-  if (playNum === 0) {
-    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
-    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
-    playNum = playList.length - 1;
-    playAudio();
-    playItems[playNum].scrollIntoView({block: "end", behavior: "smooth"})
+  if (audio.currentTime < 5) {
+    if (playNum === 0) {
+      if (repeat === 1) {
+        playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+        playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
+        playNum = playList.length - 1;
+        playAudio();
+        playItems[playNum].scrollIntoView({block: "end", behavior: "smooth"})
+      }
+    } else {
+      playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+      playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
+      playNum--;
+      playAudio();
+      playItems[playNum].scrollIntoView({block: "end", behavior: "smooth"})
+    }
   } else {
-    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
-    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
-    playNum--;
-    playAudio();
-    playItems[playNum].scrollIntoView({block: "end", behavior: "smooth"})
+    audio.currentTime = 0;
+    if (repeat !== 1) prevBtn.classList.add('inactive')
   }
 }
-
 //func to play next track
 function playNext() {
   if (playNum === playList.length - 1) {
-    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
-    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
-    playNum = 0;
-    playAudio();
-    playItems[playNum].scrollIntoView({block: "end", behavior: "smooth"})
+    if (repeat === 1) {
+      playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+      playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
+      playNum = 0;
+      playAudio();
+      playItems[playNum].scrollIntoView({block: "end", behavior: "smooth"})
+    }
   } else {
     playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
     playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
@@ -290,7 +310,7 @@ playItems.forEach((element, index) => element.addEventListener('click', () => {
   }
   playAudio()
 }));
-audio.onended = () => playNext();                                              //play next track when track ended
+
 // 6. ADDITIONAL FUNCTIONAL
 function someAction(event) {
   if (event.target.nodeName === 'BODY') {
@@ -410,3 +430,54 @@ function getLocalStorage() {                                                   /
 
 window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
 window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page
+
+
+const repeatBtn = document.querySelector(".repeat-button");
+const repeatSvg = document.querySelector(".repeat-svg");
+const repeatIcon = document.querySelector(".repeat-icon");
+const repeatOneIcon = document.querySelector(".repeat-one-icon");
+let repeat = 1;
+repeatSvg.classList.add("repeat-active");
+repeatBtn.title = "Repeat Playlist";
+repeatSvg.addEventListener('click', () => {
+  if (repeat === 0) {
+    repeatSvg.classList.add("repeat-active");
+    repeatBtn.title = "Repeat Playlist";
+    if (playNum === 0) prevBtn.classList.remove('inactive');
+    if (playNum === playList.length - 1) nextBtn.classList.remove('inactive');
+    repeat++
+  } else if (repeat === 1) {
+    repeatIcon.classList.add("repeat-none");
+    repeatOneIcon.classList.add("repeat-display");
+    repeatBtn.title = "Repeat Track";
+    if (playNum === 0) prevBtn.classList.add('inactive');
+    if (playNum === playList.length - 1) nextBtn.classList.add('inactive');
+    repeat++
+  } else if (repeat === 2) {
+    repeatOneIcon.classList.remove("repeat-display");
+    repeatIcon.classList.remove("repeat-none");
+    repeatSvg.classList.remove("repeat-active");
+    repeatBtn.title = "No Repeat";
+    if (playNum === 0) prevBtn.classList.add('inactive');
+    if (playNum === playList.length - 1) nextBtn.classList.add('inactive');
+    repeat = 0
+  };
+});
+
+//activate prev button after 5 sec playing
+function setActivePrevBtn() {
+  if (audio.currentTime > 5) prevBtn.classList.remove('inactive');
+  setTimeout(setActivePrevBtn, 1000)
+}
+setActivePrevBtn();
+
+//play next track when track ended
+audio.onended = () => {
+  if (playNum === playList.length - 1 && repeat !== 1) {
+    isPlay = false;
+    audio.currentTime = 0;
+    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
+    playBtn.classList.remove('pause')
+  } else if (repeat === 2) {isPlay = false; playAudio()}
+  else playNext()
+}
