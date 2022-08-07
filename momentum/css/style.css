@@ -213,6 +213,22 @@ body {
   transition: .2s;
 }
 
+.repeat-svg {
+  fill: rgba(255, 255, 255, 0.5);
+}
+
+.repeat-active {
+  fill: rgba(255, 255, 255, 1);
+}
+
+.repeat-one-icon, .repeat-none {
+  display: none;
+}
+
+.repeat-display {
+  display: block;
+}
+
 .playlist-component {
   overflow: hidden;
 }
@@ -397,6 +413,11 @@ body {
   transform: scale(1.1);
 }
 
+.inactive, .inactive:hover, .inactive:active {
+  opacity: .5;
+  transform: scale(1);
+  cursor: auto;
+}
 /* .play {
   width: 40px;
   height: 40px;
