@@ -165,24 +165,28 @@ const playListItemContent = `
   <div class="item-duration"></div>
   </div>`;
 
-import playList from './playList.js';                                          //import playlist
+import playListOrig from './playList.js';                                          //import playlist
+let playList = playListOrig.slice(0);
 const prevBtn = document.querySelector('.prev-button');                        //find btn prev
 const playBtn = document.querySelector('.play-button');                        //find btn play
 const nextBtn = document.querySelector('.next-button');                        //find btn next
 const playListContainer = document.querySelector('.playlist-container');       //find playList container
 
 //fill playList container with playlist items
-playList.forEach(element => {
-  const playListItem = document.createElement('div');
-  playListItem.classList.add('item-component');
-  playListItem.innerHTML = playListItemContent;
-  playListItem.querySelector('.image-cover').src = element.cover;
-  playListItem.querySelector('.item-title').textContent = element.title;
-  playListItem.querySelector('.item-author').textContent = element.author;
-  playListItem.querySelector('.item-duration').textContent = element.duration;
-  playListContainer.append(playListItem)
-});
-const playItems = document.querySelectorAll('.item-component');                //find all playlist items to make one active when playing
+function genPlayList() {
+  playList.forEach(element => {
+    const playListItem = document.createElement('div');
+    playListItem.classList.add('item-component');
+    playListItem.innerHTML = playListItemContent;
+    playListItem.querySelector('.image-cover').src = element.cover;
+    playListItem.querySelector('.item-title').textContent = element.title;
+    playListItem.querySelector('.item-author').textContent = element.author;
+    playListItem.querySelector('.item-duration').textContent = element.duration;
+    playListContainer.append(playListItem)
+  });
+}
+genPlayList();
+let playItems = document.querySelectorAll('.item-component');                //find all playlist items to make one active when playing
 const audio = new Audio();                                                     //make audio player
 let isPlay = false;                                                            //set is track playing to false
 let playNum = 0;                                                               //set number of track in playlist to 0
@@ -208,7 +212,7 @@ function setPlayer() {
   coverTitle.innerHTML = playList[playNum].title;
   coverAuthor.innerHTML = playList[playNum].author;
   duration.innerHTML = playList[playNum].duration;
-  playItems[playNum].querySelector('.icon-container').classList.add('item-active');
+  playItems[playNum].querySelector('.icon-container').classList.add('item-active')
 }
 setPlayer();
 
@@ -302,14 +306,17 @@ function playNext() {
 playBtn.addEventListener('click', playAudio);                                  //play track by click on play btn
 prevBtn.addEventListener('click', playPrev);                                   //play play prev track by click on prev btn
 nextBtn.addEventListener('click', playNext);                                   //play play next track by click on next btn
-playItems.forEach((element, index) => element.addEventListener('click', () => {
-  if (playNum !== index) {
-    playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
-    playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
-    playNum = index;
-  }
-  playAudio()
-}));
+function clickOnItem() {
+  playItems.forEach((element, index) => element.addEventListener('click', () => {
+    if (playNum !== index) {
+      playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+      playItems[playNum].querySelector('.icon-container').classList.remove('item-playing');
+      playNum = index
+    }
+    playAudio()
+  }))
+}
+clickOnItem();
 
 // 6. ADDITIONAL FUNCTIONAL
 function someAction(event) {
@@ -413,7 +420,9 @@ function setLocalStorage() {                                                   /
   localStorage.setItem('duration', audio.currentTime);
   localStorage.setItem('volume', audio.volume)
 }
-function getLocalStorage() {                                                   //func to get name & city from local storage and write them to the page
+
+//func to get name & city from local storage and write them to the page
+function getLocalStorage() {
   if (localStorage.getItem('name')) {name.value = localStorage.getItem('name')}
   if (localStorage.getItem('city')) {city.value = localStorage.getItem('city')}
   playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
@@ -481,3 +490,42 @@ audio.onended = () => {
   } else if (repeat === 2) {isPlay = false; playAudio()}
   else playNext()
 }
+
+//shuffle
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+function shufflePlaylist() {
+  playListContainer.innerHTML = '';
+  shuffle(playList);
+  genPlayList();
+  playItems = document.querySelectorAll('.item-component');
+  setPlayer();
+}
+function returnShuffle() {
+  playListContainer.innerHTML = '';
+  playList = playListOrig.slice(0);
+  genPlayList();
+  playItems = document.querySelectorAll('.item-component');
+  setPlayer();
+}
+
+const shuffleBtn = document.querySelector(".shuffle-button");
+const shuffleSvg = document.querySelector(".shuffle-svg");
+let shuff = false;
+shuffleBtn.addEventListener('click', () => {
+  if (shuff === false) {
+    shuffleSvg.classList.add("repeat-active");
+    shufflePlaylist();
+    clickOnItem();
+    shuff = !shuff;
+  } else {
+    shuffleSvg.classList.remove("repeat-active");
+    returnShuffle();
+    clickOnItem();
+    shuff = !shuff
+  }
+});
