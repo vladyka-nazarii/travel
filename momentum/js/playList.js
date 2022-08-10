@@ -39,12 +39,34 @@ const playListOrig = [
     author: 'СКАЙ',
     src: './assets/sounds/СКАЙ - Легковажна.mp3',
     duration: '3:51'
-  },  {      
+  },
+  {      
     cover: './assets/sounds/laud.jpg',
     title: 'У Цю Ніч',
     author: 'LAUD',
     src: './assets/sounds/Laud - У Цю Ніч.mp3',
     duration: '3:27'
+  },
+  {      
+    cover: './assets/sounds/mova tila.jpg',
+    title: 'Мова Тiла',
+    author: 'TVORCHI',
+    src: './assets/sounds/Tvorchi - Мова Тiла.mp3',
+    duration: '3:34'
+  },
+  {      
+    cover: './assets/sounds/gusy.jpg',
+    title: 'Гуси',
+    author: 'Wellboy',
+    src: './assets/sounds/Wellboy - Гуси.mp3',
+    duration: '2:53'
+  },
+  {      
+    cover: './assets/sounds/cherry.jpg',
+    title: 'Вишні',
+    author: 'Wellboy',
+    src: './assets/sounds/Wellboy - Вишнi.mp3',
+    duration: '3:03'
   }
 ]
 export default playListOrig;
