@@ -520,7 +520,7 @@ body {
 }
 
 .slide-prev {
-  left: 280px;
+  left: 300px;
   background-image: url("../assets/svg/slider-prev.svg");
   z-index: 20;
 }
