@@ -522,10 +522,14 @@ shuffleBtn.addEventListener('click', () => {
     shufflePlaylist();
     clickOnItem();
     shuff = !shuff;
+    playBtn.classList.remove('pause');
+    playBtn.title = "Play"
   } else {
     shuffleSvg.classList.remove("repeat-active");
     returnShuffle();
     clickOnItem();
-    shuff = !shuff
+    shuff = !shuff;
+    playBtn.classList.remove('pause');
+    playBtn.title = "Play"
   }
 });

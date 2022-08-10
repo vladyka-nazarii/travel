@@ -32,6 +32,19 @@ const playListOrig = [
     author: 'KALUSH',
     src: './assets/sounds/kalush_-_zori.mp3',
     duration: '3:20'
+  },
+  {      
+    cover: './assets/sounds/lehkovagna.jpg',
+    title: 'Легковажна',
+    author: 'СКАЙ',
+    src: './assets/sounds/СКАЙ - Легковажна.mp3',
+    duration: '3:51'
+  },  {      
+    cover: './assets/sounds/laud.jpg',
+    title: 'У Цю Ніч',
+    author: 'LAUD',
+    src: './assets/sounds/Laud - У Цю Ніч.mp3',
+    duration: '3:27'
   }
 ]
 export default playListOrig;

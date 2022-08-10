@@ -33,7 +33,7 @@ body {
 
 .player {
   /* height: 480px; */
-  width: 296px;
+  width: 256px;
   /* background-color: rgba(255, 255, 255, 0.2); */
   z-index: 10;
 }
@@ -43,8 +43,8 @@ body {
 }
 
 .big-cover-container {
-  width: 296px;
-  height: 296px;
+  width: 256px;
+  height: 256px;
   position: relative;
   flex-shrink: 0;
   overflow: hidden;
@@ -59,7 +59,7 @@ body {
 }
 
 .cover-info {
-  width: 296px;
+  width: 256px;
   margin-top: 12px;
   margin-bottom: 8px;
   text-align: start;
@@ -240,6 +240,14 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   transition: .3s;
+}
+
+.playlist-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .hide-playlist {
