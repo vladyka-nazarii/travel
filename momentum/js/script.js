@@ -1,5 +1,6 @@
 //8. TRANSLATE
-const currentLang = {
+let currentLang = {
+  lang: 'ru',
   date: 'ru-RU',
   greetings: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'],
   name: "[Введите имя]",
@@ -13,6 +14,7 @@ const currentLang = {
   quotes: './js/quotes_ru.json'
 };
 const enLang = {
+  lang: 'en',
   date: 'en-US',
   greetings: ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'],
   name: "[Enter name]",
@@ -23,9 +25,11 @@ const enLang = {
   wind: 'Wind speed: ',
   speed: ' m/s',
   humidity: 'Humidity: ',
-  quotes: './js/quotes_en.json'
+  quotes: './js/quotes_en.json',
+  settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List']
 };
 const ruLang = {
+  lang: 'ru',
   date: 'ru-RU',
   greetings: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'],
   name: "[Введите имя]",
@@ -36,7 +40,8 @@ const ruLang = {
   wind: 'Скорость ветра: ',
   speed: ' м/с',
   humidity: 'Влажность: ',
-  quotes: './js/quotes_ru.json'
+  quotes: './js/quotes_ru.json',
+  settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Список дел']
 };
 document.querySelector('.city').placeholder = currentLang.city;
 document.querySelector('.name').placeholder = currentLang.name;
@@ -457,36 +462,6 @@ document.querySelector(".volume-button").addEventListener("click", () => {
   }
 });
 
-//func to save name & city to local storage
-function setLocalStorage() {
-  localStorage.setItem('name', name.value);
-  localStorage.setItem('city', city.value);
-  localStorage.setItem('playNum', playNum);
-  localStorage.setItem('pauseNum', pauseNum);
-  localStorage.setItem('duration', audio.currentTime);
-  localStorage.setItem('volume', audio.volume)
-}
-
-//func to get name & city from local storage and write them to the page
-function getLocalStorage() {
-  if (localStorage.getItem('name')) {name.value = localStorage.getItem('name')}
-  if (localStorage.getItem('city')) {city.value = localStorage.getItem('city')}
-  playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
-  if (localStorage.getItem('playNum')) {playNum = +localStorage.getItem('playNum')}
-  if (localStorage.getItem('pauseNum')) {pauseNum = +localStorage.getItem('pauseNum')}
-  setPlayer();
-  if (localStorage.getItem('duration')) {audio.currentTime = localStorage.getItem('duration')}
-  if (localStorage.getItem('volume')) {
-    audio.volume = localStorage.getItem('volume');
-    document.querySelector(".volume-percentage").style.width = (audio.volume * 100) + '%';
-    if (localStorage.getItem('volume') <= 0.5) {document.querySelector(".full-volume").classList.add("hide-volume")}
-  }
-}
-
-window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
-window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page
-
-
 const repeatBtn = document.querySelector(".repeat-button");
 const repeatSvg = document.querySelector(".repeat-svg");
 const repeatIcon = document.querySelector(".repeat-icon");
@@ -582,7 +557,7 @@ shuffleBtn.addEventListener('click', () => {
   }
 });
 
-//SETTINGS
+//10. SETTINGS
 document.querySelector(".setting-icon").addEventListener('click', () => {
   document.querySelector(".setting-icon").classList.toggle("toggle");
   document.querySelector(".setting-wrapper").classList.toggle("show-settings");
@@ -621,9 +596,93 @@ window.addEventListener('load', () => {
       document.querySelector(".player"),
       document.querySelector(".to-do-list")
     ];
-    if (element.querySelector(".checkbox").checked === false) {
+    if (!element.querySelector(".checkbox").checked) {
       components[index].classList.add("hide");
       if (index === 5) {slidePrev.classList.add('close-playlist')};
     }
   })
 });
+
+document.addEventListener('click', event => {
+  if (!document.querySelector(".setting-container").contains(event.target) &&
+  !document.querySelector(".setting-icon").contains(event.target)) {
+    document.querySelector(".setting-icon").classList.remove("toggle");
+    document.querySelector(".setting-wrapper").classList.remove("show-settings");
+  }
+})
+
+const state = {
+  language: 'en',
+  photoSource: 'github',
+  blocks: ['time', 'date','greeting', 'quote', 'weather', 'audio', 'todolist']
+}
+
+function setLang() {
+  showTime();
+  getWeather();
+  getQuotes();
+  if (city.value === 'Минск' || city.value === 'London') {city.value = currentLang.cityDefault};
+};
+
+document.querySelector(".en-lang").addEventListener('click', () => {
+  if (document.querySelector(".en-lang").querySelector(".lang-radio").value === ruLang.lang) {
+    currentLang = ruLang;
+    setLang();
+  }
+  else {
+    currentLang = enLang;
+    setLang();
+  }
+})
+
+document.querySelector(".ru-lang").addEventListener('click', () => {
+  if (document.querySelector(".ru-lang").querySelector(".lang-radio").value === ruLang.lang) {
+  currentLang = ruLang;
+  setLang();
+}
+else {
+  currentLang = enLang;
+  setLang();
+}
+})
+
+//func to save name & city to local storage
+function setLocalStorage() {
+  localStorage.setItem('name', name.value);
+  localStorage.setItem('city', city.value);
+  localStorage.setItem('playNum', playNum);
+  localStorage.setItem('pauseNum', pauseNum);
+  localStorage.setItem('duration', audio.currentTime);
+  localStorage.setItem('volume', audio.volume);
+  localStorage.setItem('language', state.language);
+  localStorage.setItem('photoSource', state.photoSource);
+  localStorage.setItem('blocks', state.blocks)
+}
+
+//func to get name & city from local storage and write them to the page
+function getLocalStorage() {
+  if (localStorage.getItem('name')) {name.value = localStorage.getItem('name')};
+  if (localStorage.getItem('city')) {city.value = localStorage.getItem('city')};
+  playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+  if (localStorage.getItem('playNum')) {playNum = +localStorage.getItem('playNum')};
+  if (localStorage.getItem('pauseNum')) {pauseNum = +localStorage.getItem('pauseNum')};
+  setPlayer();
+  if (localStorage.getItem('duration')) {audio.currentTime = localStorage.getItem('duration')};
+  if (localStorage.getItem('volume')) {
+    audio.volume = localStorage.getItem('volume');
+    document.querySelector(".volume-percentage").style.width = (audio.volume * 100) + '%';
+    if (localStorage.getItem('volume') <= 0.5) {document.querySelector(".full-volume").classList.add("hide-volume")}
+  };
+  if (localStorage.getItem('language')) {
+    if (localStorage.getItem('language') === 'en') {
+      currentLang = enLang;
+      setLang();
+    } else if (localStorage.getItem('language') === 'ru') {
+      currentLang = ruLang;
+      setLang();
+    }
+  }
+}
+
+window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
+window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page

@@ -121,33 +121,76 @@
       <div class="setting-wrapper">
         <div class="setting-container nipple">
           <ul class="settings-list">
-            <li class="slide-toggle has-toggle on" data-related-widget="linksVisible" data-test="settings-general-links">
+            <li class="lang">
+              <span class="setting-name">Language</span>
+              <div class="select-lang">
+                <div class="en-lang">
+                  <input class="lang-radio" type="radio" id="en" name="lang" value="en" checked>
+                  <label class="lang-label" for="en">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="24" height="12">
+                      <clipPath id="s">
+                        <path d="M0,0 v30 h60 v-30 z"/>
+                      </clipPath>
+                      <clipPath id="t">
+                        <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+                      </clipPath>
+                      <g clip-path="url(#s)">
+                        <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                        <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                        <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                        <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+                      </g>
+                      </svg>ENG</label>
+                </div>
+                <div class="ru-lang">
+                  <input class="lang-radio" type="radio" id="ru" name="lang" value="ru">
+                  <label class="lang-label" for="ru">
+                    <svg class="flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" width="24" height="12">
+                      <rect fill="#fff" width="12" height="3"/>
+                      <rect fill="#d52b1e" y="3" width="12" height="3"/>
+                      <rect fill="#0039a6" y="2" width="12" height="2"/>
+                    </svg>RUS</label>
+                </div>
+              </div>
+            </li>
+            <li>
+              <span class="setting-name">Background source</span>
+            </li>
+            <li class="slide-toggle">
               <span class="setting-name">Time</span>
-              <input class="checkbox" type="checkbox" id="time" checked><label for="time"></label>
+              <input class="checkbox" type="checkbox" id="time" checked>
+              <label class="slider" for="time"></label>
             </li>
-            <li class="slide-toggle has-toggle on" data-related-widget="linksVisible" data-test="settings-general-links">
+            <li class="slide-toggle">
               <span class="setting-name">Date</span>
-              <input class="checkbox" type="checkbox" id="date" checked><label for="date"></label>
+              <input class="checkbox" type="checkbox" id="date" checked>
+              <label class="slider" for="date"></label>
             </li>
-            <li class="slide-toggle has-toggle on" data-related-widget="linksVisible" data-test="settings-general-links">
+            <li class="slide-toggle">
               <span class="setting-name">Greeting</span>
-              <input class="checkbox" type="checkbox" id="greeting" checked><label for="greeting"></label>
+              <input class="checkbox" type="checkbox" id="greeting" checked>
+              <label class="slider" for="greeting"></label>
             </li>
-            <li class="slide-toggle has-toggle on" data-related-widget="linksVisible" data-test="settings-general-links">
+            <li class="slide-toggle">
               <span class="setting-name">Quote</span>
-              <input class="checkbox" type="checkbox" id="quote" checked><label for="quote"></label>
+              <input class="checkbox" type="checkbox" id="quote" checked>
+              <label class="slider" for="quote"></label>
             </li>
-            <li class="slide-toggle has-toggle on" data-related-widget="linksVisible" data-test="settings-general-links">
+            <li class="slide-toggle">
               <span class="setting-name">Weather</span>
-              <input class="checkbox" type="checkbox" id="weather" checked><label for="weather"></label>
+              <input class="checkbox" type="checkbox" id="weather" checked>
+              <label class="slider" for="weather"></label>
             </li>
-            <li class="slide-toggle has-toggle on" data-related-widget="linksVisible" data-test="settings-general-links">
+            <li class="slide-toggle">
               <span class="setting-name">Audioplayer</span>
-              <input class="checkbox" type="checkbox" id="player" checked><label for="player"></label>
+              <input class="checkbox" type="checkbox" id="player" checked>
+              <label class="slider" for="player"></label>
             </li>
-            <li class="slide-toggle has-toggle on" data-related-widget="linksVisible" data-test="settings-general-links">
+            <li class="slide-toggle">
               <span class="setting-name">To Do List</span>
-              <input class="checkbox" type="checkbox" id="to-do" checked><label for="to-do"></label>
+              <input class="checkbox" type="checkbox" id="to-do" checked>
+              <label class="slider" for="to-do"></label>
             </li>
           </ul>
         </div>

@@ -674,18 +674,31 @@ body {
   gap: 5px;
 }
 
+.lang {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select-lang {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
 .slide-toggle {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: solid 1px #4cbf3f;
+  border-top: solid 1px grey;
   height: 40px;
 }
 
 .checkbox {display: none;}
 
-label {
+.slider {
 	width: 48px;
 	height: 24px;
 	background: grey;
@@ -695,7 +708,7 @@ label {
   cursor: pointer;
 }
 
-label:after {
+.slider:after {
 	content: '';
 	position: absolute;
 	top: 2px;
@@ -707,11 +720,11 @@ label:after {
 	transition: 0.3s;
 }
 
-input:checked + label {
+input:checked + .slider {
 	background: #4cbf3f;
 }
 
-input:checked + label:after {
+input:checked + .slider:after {
 	left: calc(100% - 2px);
 	transform: translateX(-100%);
 }
