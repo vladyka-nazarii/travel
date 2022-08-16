@@ -1,17 +1,19 @@
 //8. TRANSLATE
 let currentLang = {
-  lang: 'ru',
-  date: 'ru-RU',
-  greetings: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'],
-  name: "[Введите имя]",
-  city: "[Введите город]",
-  cityDefault: 'Минск',
-  cityError: 'Ошибка! Город не найден!',
-  weather: 'ru',
-  wind: 'Скорость ветра: ',
-  speed: ' м/с',
-  humidity: 'Влажность: ',
-  quotes: './js/quotes_ru.json'
+  lang: 'en',
+  date: 'en-US',
+  greetings: ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'],
+  name: "[Enter name]",
+  city: "[Enter city]",
+  cityDefault: 'London',
+  cityError: 'Error! City not found!',
+  weather: 'en',
+  wind: 'Wind speed: ',
+  speed: ' m/s',
+  humidity: 'Humidity: ',
+  quotes: './js/quotes_en.json',
+  settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
+  settingsMain: ['Language']
 };
 const enLang = {
   lang: 'en',
@@ -26,7 +28,8 @@ const enLang = {
   speed: ' m/s',
   humidity: 'Humidity: ',
   quotes: './js/quotes_en.json',
-  settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List']
+  settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
+  settingsMain: ['Language']
 };
 const ruLang = {
   lang: 'ru',
@@ -41,7 +44,8 @@ const ruLang = {
   speed: ' м/с',
   humidity: 'Влажность: ',
   quotes: './js/quotes_ru.json',
-  settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Список дел']
+  settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Список дел'],
+  settingsMain: ['Язык']
 };
 document.querySelector('.city').placeholder = currentLang.city;
 document.querySelector('.name').placeholder = currentLang.name;
@@ -558,11 +562,34 @@ shuffleBtn.addEventListener('click', () => {
 });
 
 //10. SETTINGS
+
+const state = {
+  language: 'en',
+  photoSource: 'github',
+  time: true,
+  date: true,
+  greeting: true,
+  quote: true,
+  weather: true,
+  audio: true,
+  todolist: true
+}
+//show settings
 document.querySelector(".setting-icon").addEventListener('click', () => {
   document.querySelector(".setting-icon").classList.toggle("toggle");
   document.querySelector(".setting-wrapper").classList.toggle("show-settings");
 });
 
+//hide settings by click outside
+document.addEventListener('click', event => {
+  if (!document.querySelector(".setting-container").contains(event.target) &&
+  !document.querySelector(".setting-icon").contains(event.target)) {
+    document.querySelector(".setting-icon").classList.remove("toggle");
+    document.querySelector(".setting-wrapper").classList.remove("show-settings");
+  }
+})
+
+//hide elements in settings
 document.querySelectorAll('.slide-toggle').forEach((element, index) => element.addEventListener('click', () => {
   const components = [
     document.querySelector(".time"),
@@ -573,75 +600,44 @@ document.querySelectorAll('.slide-toggle').forEach((element, index) => element.a
     document.querySelector(".player"),
     document.querySelector(".to-do-list")
   ];
+  const states = ['time', 'date', 'greeting', 'quote', 'weather', 'audio', 'todolist'];
   if (element.querySelector(".checkbox").checked === true) {
     components[index].classList.add("hide");
     if (index === 5) {slidePrev.classList.add('close-playlist')};
     element.querySelector(".checkbox").checked = false;
+    state[states[index]] = false;
   }
   else {
     components[index].classList.remove("hide");
     if (index === 5) slidePrev.classList.remove('close-playlist');
     element.querySelector(".checkbox").checked = true;
+    state[states[index]] = true;
   }
 }));
-
-window.addEventListener('load', () => {
-  document.querySelectorAll('.slide-toggle').forEach((element, index) => {
-    const components = [
-      document.querySelector(".time"),
-      document.querySelector(".date"),
-      document.querySelector(".greeting-container"),
-      document.querySelector(".quote-div"),
-      document.querySelector(".weather"),
-      document.querySelector(".player"),
-      document.querySelector(".to-do-list")
-    ];
-    if (!element.querySelector(".checkbox").checked) {
-      components[index].classList.add("hide");
-      if (index === 5) {slidePrev.classList.add('close-playlist')};
-    }
-  })
-});
-
-document.addEventListener('click', event => {
-  if (!document.querySelector(".setting-container").contains(event.target) &&
-  !document.querySelector(".setting-icon").contains(event.target)) {
-    document.querySelector(".setting-icon").classList.remove("toggle");
-    document.querySelector(".setting-wrapper").classList.remove("show-settings");
-  }
-})
-
-const state = {
-  language: 'en',
-  photoSource: 'github',
-  blocks: ['time', 'date','greeting', 'quote', 'weather', 'audio', 'todolist']
-}
 
 function setLang() {
   showTime();
   getWeather();
   getQuotes();
+  document.querySelector('.city').placeholder = currentLang.city;
+  document.querySelector('.name').placeholder = currentLang.name;
   if (city.value === 'Минск' || city.value === 'London') {city.value = currentLang.cityDefault};
+  state.language = currentLang.lang;
+  document.querySelector('.lang').querySelector('.setting-name').innerHTML = currentLang.settingsMain;
+  document.querySelectorAll(".slide-toggle").forEach((element, index) => {
+    element.querySelector(".setting-name").innerHTML = currentLang.settings[index]
+  });
 };
 
 document.querySelector(".en-lang").addEventListener('click', () => {
-  if (document.querySelector(".en-lang").querySelector(".lang-radio").value === ruLang.lang) {
-    currentLang = ruLang;
-    setLang();
-  }
-  else {
+  if (document.querySelector(".en-lang").querySelector(".lang-radio").value !== currentLang.lang) {
     currentLang = enLang;
     setLang();
   }
 })
-
 document.querySelector(".ru-lang").addEventListener('click', () => {
-  if (document.querySelector(".ru-lang").querySelector(".lang-radio").value === ruLang.lang) {
+  if (document.querySelector(".ru-lang").querySelector(".lang-radio").value !== currentLang.lang) {
   currentLang = ruLang;
-  setLang();
-}
-else {
-  currentLang = enLang;
   setLang();
 }
 })
@@ -656,7 +652,13 @@ function setLocalStorage() {
   localStorage.setItem('volume', audio.volume);
   localStorage.setItem('language', state.language);
   localStorage.setItem('photoSource', state.photoSource);
-  localStorage.setItem('blocks', state.blocks)
+  localStorage.setItem('time', state.time);
+  localStorage.setItem('date', state.date);
+  localStorage.setItem('greeting', state.greeting);
+  localStorage.setItem('quote', state.quote);
+  localStorage.setItem('weather', state.weather);
+  localStorage.setItem('audio', state.audio);
+  localStorage.setItem('todolist', state.todolist);
 }
 
 //func to get name & city from local storage and write them to the page
@@ -675,14 +677,70 @@ function getLocalStorage() {
   };
   if (localStorage.getItem('language')) {
     if (localStorage.getItem('language') === 'en') {
+      document.querySelector("#en").checked = true;
       currentLang = enLang;
       setLang();
     } else if (localStorage.getItem('language') === 'ru') {
+      document.querySelector("#ru").checked = true;
       currentLang = ruLang;
       setLang();
     }
-  }
+  };
+  if (localStorage.getItem('time')) {
+    if (localStorage.getItem('time') === 'false') {
+      document.querySelector("#time").checked = false;
+      state.time = false;
+      document.querySelector(".time").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('date')) {
+    if (localStorage.getItem('date') === 'false') {
+      document.querySelector("#date").checked = false;
+      state.date = false;
+      document.querySelector(".date").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('greeting')) {
+    if (localStorage.getItem('greeting') === 'false') {
+      document.querySelector("#greeting").checked = false;
+      state.greeting = false;
+      document.querySelector(".greeting-container").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('quote')) {
+    if (localStorage.getItem('quote') === 'false') {
+      document.querySelector("#quote").checked = false;
+      state.quote = false;
+      document.querySelector(".quote-div").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('weather')) {
+    if (localStorage.getItem('weather') === 'false') {
+      document.querySelector("#weather").checked = false;
+      state.weather = false;
+      document.querySelector(".weather").classList.add("hide")
+    }
+  };
 }
-
 window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
 window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page
+
+
+// window.addEventListener('load', () => {
+//   document.querySelectorAll('.slide-toggle').forEach((element, index) => {
+//     const components = [
+//       document.querySelector(".time"),
+//       document.querySelector(".date"),
+//       document.querySelector(".greeting-container"),
+//       document.querySelector(".quote-div"),
+//       document.querySelector(".weather"),
+//       document.querySelector(".player"),
+//       document.querySelector(".to-do-list")
+//     ];
+//     if (!element.querySelector(".checkbox").checked) {
+//       components[index].classList.add("hide");
+//       if (index === 5) {slidePrev.classList.add('close-playlist')};
+//     }
+//   })
+// });
+
