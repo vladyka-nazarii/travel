@@ -598,7 +598,7 @@ document.querySelectorAll('.slide-toggle').forEach((element, index) => element.a
     document.querySelector(".quote-div"),
     document.querySelector(".weather"),
     document.querySelector(".player"),
-    document.querySelector(".to-do-list")
+    document.querySelector(".todolist")
   ];
   const states = ['time', 'date', 'greeting', 'quote', 'weather', 'audio', 'todolist'];
   if (element.querySelector(".checkbox").checked === true) {
@@ -719,6 +719,21 @@ function getLocalStorage() {
       document.querySelector("#weather").checked = false;
       state.weather = false;
       document.querySelector(".weather").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('audio')) {
+    if (localStorage.getItem('audio') === 'false') {
+      document.querySelector("#audio").checked = false;
+      state.audio = false;
+      document.querySelector(".player").classList.add("hide");
+      slidePrev.classList.add('close-playlist')
+    }
+  };
+  if (localStorage.getItem('todolist')) {
+    if (localStorage.getItem('todolist') === 'false') {
+      document.querySelector("#todolist").checked = false;
+      state.todolist = false;
+      document.querySelector(".todolist").classList.add("hide")
     }
   };
 }
