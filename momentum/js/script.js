@@ -1,3 +1,47 @@
+//8. TRANSLATE
+const currentLang = {
+  date: 'ru-RU',
+  greetings: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'],
+  name: "[Введите имя]",
+  city: "[Введите город]",
+  cityDefault: 'Минск',
+  cityError: 'Ошибка! Город не найден!',
+  weather: 'ru',
+  wind: 'Скорость ветра: ',
+  speed: ' м/с',
+  humidity: 'Влажность: ',
+  quotes: './js/quotes_ru.json'
+};
+const enLang = {
+  date: 'en-US',
+  greetings: ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'],
+  name: "[Enter name]",
+  city: "[Enter city]",
+  cityDefault: 'London',
+  cityError: 'Error! City not found!',
+  weather: 'en',
+  wind: 'Wind speed: ',
+  speed: ' m/s',
+  humidity: 'Humidity: ',
+  quotes: './js/quotes_en.json'
+};
+const ruLang = {
+  date: 'ru-RU',
+  greetings: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'],
+  name: "[Введите имя]",
+  city: "[Введите город]",
+  cityDefault: 'Минск',
+  cityError: 'Ошибка! Город не найден!',
+  weather: 'ru',
+  wind: 'Скорость ветра: ',
+  speed: ' м/с',
+  humidity: 'Влажность: ',
+  quotes: './js/quotes_ru.json'
+};
+document.querySelector('.city').placeholder = currentLang.city;
+document.querySelector('.name').placeholder = currentLang.name;
+
+
 // 1. TIME & DATE
 
 //update time, date, greeting every 1 sec
@@ -10,7 +54,7 @@ function showTime() {
 }
 const date = document.querySelector('.date');
 function showDate() {
-  date.textContent = new Date().toLocaleDateString('en-US', {weekday: 'long', month: 'long', day: 'numeric'});
+  date.textContent = new Date().toLocaleDateString(currentLang.date, {weekday: 'long', month: 'long', day: 'numeric'});
 }
 
 // 2. GREETING
@@ -20,7 +64,7 @@ const greeting = document.querySelector('.greeting');
 const name = document.querySelector('.name');
 showTime();
 function showGreeting() {
-  const timeOfDay = ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'];
+  const timeOfDay = currentLang.greetings;
   greeting.textContent = timeOfDay[Math.floor((new Date().getHours())/6)]
 }
 
@@ -72,15 +116,15 @@ const windSpeed = document.querySelector('.wind-speed');
 const humidity = document.querySelector('.humidity');
 const weatherDescription = document.querySelector('.weather-description');
 const city = document.querySelector('.city');
-if (city.value === '') {city.value = 'Minsk'};
+if (city.value === '') {city.value = currentLang.cityDefault};
 
 //func to update weather by city
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=26761a0144387591cefb99ec81c08657&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${currentLang.weather}&appid=26761a0144387591cefb99ec81c08657&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
   if (data.weather == undefined) {
-    weatherError.textContent = `Error! City not found!`;
+    weatherError.textContent = currentLang.cityError;
     weatherIcon.className = 'weather-icon owf';
     temperature.textContent = '';
     weatherDescription.textContent = '';
@@ -92,8 +136,8 @@ async function getWeather() {
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${Math.round(data.main.temp)}°C`;
   weatherDescription.textContent = data.weather[0].description[0].toUpperCase() + data.weather[0].description.slice(1);
-  windSpeed.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-  humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+  windSpeed.textContent = `${currentLang.wind}${Math.round(data.wind.speed)}${currentLang.speed}`;
+  humidity.textContent = `${currentLang.humidity}${Math.round(data.main.humidity)}%`;
   }
 }
 
@@ -104,8 +148,10 @@ function setCity(event) {
     city.blur();
   }
 }
+
 //update weather by pressing enter key
 city.addEventListener('keypress', setCity);
+
 //update weather after page fully loaded
 document.addEventListener('DOMContentLoaded', getWeather);
 
@@ -117,7 +163,7 @@ const author = document.querySelector('.author');
 
 //func to generate new quote
 async function getQuotes() {
-  const quotes = `./js/quotes_en.json`;
+  const quotes = currentLang.quotes;
   const res = await fetch(quotes);
   const data = await res.json();
   const i = Math.round(Math.random() * data.length)
@@ -411,8 +457,8 @@ document.querySelector(".volume-button").addEventListener("click", () => {
   }
 });
 
-
-function setLocalStorage() {                                                   //func to save name & city to local storage
+//func to save name & city to local storage
+function setLocalStorage() {
   localStorage.setItem('name', name.value);
   localStorage.setItem('city', city.value);
   localStorage.setItem('playNum', playNum);
@@ -522,6 +568,7 @@ shuffleBtn.addEventListener('click', () => {
     shufflePlaylist();
     clickOnItem();
     shuff = !shuff;
+    isPlay = false;
     playBtn.classList.remove('pause');
     playBtn.title = "Play"
   } else {
@@ -529,7 +576,54 @@ shuffleBtn.addEventListener('click', () => {
     returnShuffle();
     clickOnItem();
     shuff = !shuff;
+    isPlay = false;
     playBtn.classList.remove('pause');
     playBtn.title = "Play"
   }
+});
+
+//SETTINGS
+document.querySelector(".setting-icon").addEventListener('click', () => {
+  document.querySelector(".setting-icon").classList.toggle("toggle");
+  document.querySelector(".setting-wrapper").classList.toggle("show-settings");
+});
+
+document.querySelectorAll('.slide-toggle').forEach((element, index) => element.addEventListener('click', () => {
+  const components = [
+    document.querySelector(".time"),
+    document.querySelector(".date"),
+    document.querySelector(".greeting-container"),
+    document.querySelector(".quote-div"),
+    document.querySelector(".weather"),
+    document.querySelector(".player"),
+    document.querySelector(".to-do-list")
+  ];
+  if (element.querySelector(".checkbox").checked === true) {
+    components[index].classList.add("hide");
+    if (index === 5) {slidePrev.classList.add('close-playlist')};
+    element.querySelector(".checkbox").checked = false;
+  }
+  else {
+    components[index].classList.remove("hide");
+    if (index === 5) slidePrev.classList.remove('close-playlist');
+    element.querySelector(".checkbox").checked = true;
+  }
+}));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.slide-toggle').forEach((element, index) => {
+    const components = [
+      document.querySelector(".time"),
+      document.querySelector(".date"),
+      document.querySelector(".greeting-container"),
+      document.querySelector(".quote-div"),
+      document.querySelector(".weather"),
+      document.querySelector(".player"),
+      document.querySelector(".to-do-list")
+    ];
+    if (element.querySelector(".checkbox").checked === false) {
+      components[index].classList.add("hide");
+      if (index === 5) {slidePrev.classList.add('close-playlist')};
+    }
+  })
 });
