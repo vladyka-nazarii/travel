@@ -582,7 +582,6 @@ document.querySelector(".setting-icon").addEventListener('click', () => {
   document.querySelector(".setting-icon").classList.toggle("toggle");
   document.querySelector(".setting-wrapper").classList.toggle("show-settings");
   state.tags = document.querySelector(".bg-tags").value;
-  console.log(document.querySelector(".bg-tags").value)
 });
 
 //hide settings by click outside
@@ -592,7 +591,6 @@ document.addEventListener('click', event => {
     document.querySelector(".setting-icon").classList.remove("toggle");
     document.querySelector(".setting-wrapper").classList.remove("show-settings");
     state.tags = document.querySelector(".bg-tags").value;
-    console.log(document.querySelector(".bg-tags").value)
   }
 })
 
@@ -772,7 +770,7 @@ window.addEventListener('load', getLocalStorage);                              /
 async function setUnsplashBg() {
   const img = new Image();
   const tags = document.querySelector(".bg-tags").value;
-  const url = 'https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=517-gEX_Tnf0NtLsR0gjynwVeAY49jH3wddAqS8S0x0';
+  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tags}&client_id=517-gEX_Tnf0NtLsR0gjynwVeAY49jH3wddAqS8S0x0`;
   const res = await fetch(url);
   const data = await res.json();
   img.src = data.urls.regular;
@@ -781,7 +779,8 @@ async function setUnsplashBg() {
 
 async function setFlickrBg() {
   const img = new Image();
-  const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=43de05dd9651aa75b4427038136f4a0f&tags=nature&extras=url_l&format=json&nojsoncallback=1';
+  const tags = document.querySelector(".bg-tags").value;
+  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=43de05dd9651aa75b4427038136f4a0f&tags=${tags}&extras=url_l&format=json&nojsoncallback=1`;
   const res = await fetch(url);
   const data = await res.json();
   img.src = data.photos.photo[randomNum].url_l;
