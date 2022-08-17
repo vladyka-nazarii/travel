@@ -13,7 +13,7 @@ let currentLang = {
   humidity: 'Humidity: ',
   quotes: './js/quotes_en.json',
   settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
-  settingsMain: ['Language']
+  settingsMain: ['Language', 'Background', 'Tags']
 };
 const enLang = {
   lang: 'en',
@@ -29,7 +29,7 @@ const enLang = {
   humidity: 'Humidity: ',
   quotes: './js/quotes_en.json',
   settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
-  settingsMain: ['Language']
+  settingsMain: ['Language', 'Background', 'Tags']
 };
 const ruLang = {
   lang: 'ru',
@@ -45,7 +45,7 @@ const ruLang = {
   humidity: 'Влажность: ',
   quotes: './js/quotes_ru.json',
   settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Список дел'],
-  settingsMain: ['Язык']
+  settingsMain: ['Язык', 'Фон', 'Теги']
 };
 document.querySelector('.city').placeholder = currentLang.city;
 document.querySelector('.name').placeholder = currentLang.name;
@@ -81,21 +81,24 @@ function showGreeting() {
 
 const body = document.querySelector('body');
 const slideNext = document.querySelector('.slide-next');
-const SlidePrev = document.querySelector('.slide-prev');
+const slidePrev = document.querySelector('.slide-prev');
 let randomNum;
 function getRandomNum() {                                                      
   randomNum = Math.ceil(Math.random() * 20)
 }
 getRandomNum();
 
-//func to set random bg
-function setBg() {
+//func to set random bg from github
+function setGithubBg() {
   const timeOfDay = ['night', 'morning', 'afternoon', 'evening'];
   const img = new Image();
   img.src = `https://raw.githubusercontent.com/vladyka-nazarii/stage1-tasks/assets/images/${timeOfDay[Math.floor((new Date().getHours())/6)]}/${randomNum.toString().padStart(2, "0")}.webp`;
-  img.onload = () => {      
-    body.style.backgroundImage = `url(${img.src})`;
-  }; 
+  img.onload = () => {body.style.backgroundImage = `url(${img.src})`};
+}
+function setBg() {
+  if (document.querySelector("#git").checked) setGithubBg();
+  if (document.querySelector("#unsplash").checked) setUnsplashBg();
+  if (document.querySelector("#flickr").checked) setFlickrBg();
 }
 setBg();
 
@@ -112,7 +115,7 @@ function getSlideNext() {
 }
 
 //change bg after left click
-SlidePrev.addEventListener('click', getSlidePrev);
+slidePrev.addEventListener('click', getSlidePrev);
 //change bg after right click
 slideNext.addEventListener('click', getSlideNext);
 
@@ -253,7 +256,6 @@ const coverAuthor = document.querySelector('.cover-author');
 const playListBtn = document.querySelector('.playlist-button');
 const current = document.querySelector(".current");
 const duration = document.querySelector(".duration");
-const slidePrev = document.querySelector(".slide-prev");
 playListBtn.addEventListener('click', () => {
   playListContainer.classList.toggle('hide-playlist');
   slidePrev.classList.toggle('close-playlist');
@@ -572,12 +574,15 @@ const state = {
   quote: true,
   weather: true,
   audio: true,
-  todolist: true
+  todolist: true,
+  tags: document.querySelector(".bg-tags").value
 }
 //show settings
 document.querySelector(".setting-icon").addEventListener('click', () => {
   document.querySelector(".setting-icon").classList.toggle("toggle");
   document.querySelector(".setting-wrapper").classList.toggle("show-settings");
+  state.tags = document.querySelector(".bg-tags").value;
+  console.log(document.querySelector(".bg-tags").value)
 });
 
 //hide settings by click outside
@@ -586,6 +591,8 @@ document.addEventListener('click', event => {
   !document.querySelector(".setting-icon").contains(event.target)) {
     document.querySelector(".setting-icon").classList.remove("toggle");
     document.querySelector(".setting-wrapper").classList.remove("show-settings");
+    state.tags = document.querySelector(".bg-tags").value;
+    console.log(document.querySelector(".bg-tags").value)
   }
 })
 
@@ -623,7 +630,9 @@ function setLang() {
   document.querySelector('.name').placeholder = currentLang.name;
   if (city.value === 'Минск' || city.value === 'London') {city.value = currentLang.cityDefault};
   state.language = currentLang.lang;
-  document.querySelector('.lang').querySelector('.setting-name').innerHTML = currentLang.settingsMain;
+  document.querySelector('.lang').querySelector('.setting-name').innerHTML = currentLang.settingsMain[0];
+  document.querySelector('.bg').querySelector('.setting-name').innerHTML = currentLang.settingsMain[1];
+  document.querySelector('.tags').querySelector('.setting-name').innerHTML = currentLang.settingsMain[2];
   document.querySelectorAll(".slide-toggle").forEach((element, index) => {
     element.querySelector(".setting-name").innerHTML = currentLang.settings[index]
   });
@@ -652,6 +661,7 @@ function setLocalStorage() {
   localStorage.setItem('volume', audio.volume);
   localStorage.setItem('language', state.language);
   localStorage.setItem('photoSource', state.photoSource);
+  localStorage.setItem('tags', state.tags);
   localStorage.setItem('time', state.time);
   localStorage.setItem('date', state.date);
   localStorage.setItem('greeting', state.greeting);
@@ -685,6 +695,23 @@ function getLocalStorage() {
       currentLang = ruLang;
       setLang();
     }
+  };
+  if (localStorage.getItem('photoSource')) {
+    if (localStorage.getItem('photoSource') === 'github') {
+      document.querySelector("#git").checked = true;
+      state.photoSource = 'github';
+      document.querySelector(".tags").classList.add("hide-tags");
+    } else if (localStorage.getItem('photoSource') === 'unsplash') {
+      document.querySelector("#unsplash").checked = true;
+      state.photoSource = 'unsplash';
+    } else if (localStorage.getItem('photoSource') === 'flickr') {
+      document.querySelector("#flickr").checked = true;
+      state.photoSource = 'flickr';
+    }
+  };
+  if (localStorage.getItem('tags')) {
+    document.querySelector(".bg-tags").value = localStorage.getItem('tags');
+    state.tags = localStorage.getItem('tags');
   };
   if (localStorage.getItem('time')) {
     if (localStorage.getItem('time') === 'false') {
@@ -740,22 +767,36 @@ function getLocalStorage() {
 window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
 window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page
 
+//9. BACKGROUND API
 
-// window.addEventListener('load', () => {
-//   document.querySelectorAll('.slide-toggle').forEach((element, index) => {
-//     const components = [
-//       document.querySelector(".time"),
-//       document.querySelector(".date"),
-//       document.querySelector(".greeting-container"),
-//       document.querySelector(".quote-div"),
-//       document.querySelector(".weather"),
-//       document.querySelector(".player"),
-//       document.querySelector(".to-do-list")
-//     ];
-//     if (!element.querySelector(".checkbox").checked) {
-//       components[index].classList.add("hide");
-//       if (index === 5) {slidePrev.classList.add('close-playlist')};
-//     }
-//   })
-// });
+async function setUnsplashBg() {
+  const img = new Image();
+  const tags = document.querySelector(".bg-tags").value;
+  const url = 'https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=517-gEX_Tnf0NtLsR0gjynwVeAY49jH3wddAqS8S0x0';
+  const res = await fetch(url);
+  const data = await res.json();
+  img.src = data.urls.regular;
+  img.onload = () => {body.style.backgroundImage = `url(${img.src})`};
+}
 
+async function setFlickrBg() {
+  const img = new Image();
+  const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=43de05dd9651aa75b4427038136f4a0f&tags=nature&extras=url_l&format=json&nojsoncallback=1';
+  const res = await fetch(url);
+  const data = await res.json();
+  img.src = data.photos.photo[randomNum].url_l;
+  img.onload = () => {body.style.backgroundImage = `url(${img.src})`};
+}
+
+document.querySelector(".git").addEventListener('click', () => {
+  document.querySelector(".tags").classList.add("hide-tags");
+  state.photoSource = 'github';
+});
+document.querySelector(".unsplash").addEventListener('click', () => {
+  document.querySelector(".tags").classList.remove("hide-tags");
+  state.photoSource = 'unsplash';
+});
+document.querySelector(".flickr").addEventListener('click', () => {
+  document.querySelector(".tags").classList.remove("hide-tags");
+  state.photoSource = 'flickr';
+});

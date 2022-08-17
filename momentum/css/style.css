@@ -639,12 +639,11 @@ body {
 .setting-wrapper {
   position: absolute;
   transition: .3s;
-  left: -280px;
+  left: -300px;
 }
 
 .setting-container {
-  width: 280px;
-  height: 360px;
+  width: 300px;
   background-color: #fff;
   position: absolute;
   bottom: 10px;
@@ -671,13 +670,15 @@ body {
 .settings-list {
   color: black;
   margin: 10px;
-  gap: 5px;
 }
 
-.lang {
+.lang,
+.bg {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: solid 1px gray;
+  padding: 5px 0;
 }
 
 .select-lang {
@@ -685,6 +686,24 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
+}
+
+.select-bg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.tags {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.hide-tags {
+  display: none;
 }
 
 .slide-toggle {
