@@ -1,18 +1,6 @@
 //8. TRANSLATE
-const currentLang = {
-  date: 'ru-RU',
-  greetings: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'],
-  name: "[Введите имя]",
-  city: "[Введите город]",
-  cityDefault: 'Минск',
-  cityError: 'Ошибка! Город не найден!',
-  weather: 'ru',
-  wind: 'Скорость ветра: ',
-  speed: ' м/с',
-  humidity: 'Влажность: ',
-  quotes: './js/quotes_ru.json'
-};
-const enLang = {
+let currentLang = {
+  lang: 'en',
   date: 'en-US',
   greetings: ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'],
   name: "[Enter name]",
@@ -23,9 +11,28 @@ const enLang = {
   wind: 'Wind speed: ',
   speed: ' m/s',
   humidity: 'Humidity: ',
-  quotes: './js/quotes_en.json'
+  quotes: './js/quotes_en.json',
+  settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
+  settingsMain: ['Language', 'Background', 'Tags']
+};
+const enLang = {
+  lang: 'en',
+  date: 'en-US',
+  greetings: ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'],
+  name: "[Enter name]",
+  city: "[Enter city]",
+  cityDefault: 'London',
+  cityError: 'Error! City not found!',
+  weather: 'en',
+  wind: 'Wind speed: ',
+  speed: ' m/s',
+  humidity: 'Humidity: ',
+  quotes: './js/quotes_en.json',
+  settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
+  settingsMain: ['Language', 'Background', 'Tags']
 };
 const ruLang = {
+  lang: 'ru',
   date: 'ru-RU',
   greetings: ['Доброй ночи,', 'Доброе утро,', 'Добрый день,', 'Добрый вечер,'],
   name: "[Введите имя]",
@@ -36,7 +43,9 @@ const ruLang = {
   wind: 'Скорость ветра: ',
   speed: ' м/с',
   humidity: 'Влажность: ',
-  quotes: './js/quotes_ru.json'
+  quotes: './js/quotes_ru.json',
+  settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Список дел'],
+  settingsMain: ['Язык', 'Фон', 'Теги']
 };
 document.querySelector('.city').placeholder = currentLang.city;
 document.querySelector('.name').placeholder = currentLang.name;
@@ -72,21 +81,24 @@ function showGreeting() {
 
 const body = document.querySelector('body');
 const slideNext = document.querySelector('.slide-next');
-const SlidePrev = document.querySelector('.slide-prev');
+const slidePrev = document.querySelector('.slide-prev');
 let randomNum;
 function getRandomNum() {                                                      
   randomNum = Math.ceil(Math.random() * 20)
 }
 getRandomNum();
 
-//func to set random bg
-function setBg() {
+//func to set random bg from github
+function setGithubBg() {
   const timeOfDay = ['night', 'morning', 'afternoon', 'evening'];
   const img = new Image();
   img.src = `https://raw.githubusercontent.com/vladyka-nazarii/stage1-tasks/assets/images/${timeOfDay[Math.floor((new Date().getHours())/6)]}/${randomNum.toString().padStart(2, "0")}.webp`;
-  img.onload = () => {      
-    body.style.backgroundImage = `url(${img.src})`;
-  }; 
+  img.onload = () => {body.style.backgroundImage = `url(${img.src})`};
+}
+function setBg() {
+  if (document.querySelector("#git").checked) setGithubBg();
+  if (document.querySelector("#unsplash").checked) setUnsplashBg();
+  if (document.querySelector("#flickr").checked) setFlickrBg();
 }
 setBg();
 
@@ -103,7 +115,7 @@ function getSlideNext() {
 }
 
 //change bg after left click
-SlidePrev.addEventListener('click', getSlidePrev);
+slidePrev.addEventListener('click', getSlidePrev);
 //change bg after right click
 slideNext.addEventListener('click', getSlideNext);
 
@@ -244,7 +256,6 @@ const coverAuthor = document.querySelector('.cover-author');
 const playListBtn = document.querySelector('.playlist-button');
 const current = document.querySelector(".current");
 const duration = document.querySelector(".duration");
-const slidePrev = document.querySelector(".slide-prev");
 playListBtn.addEventListener('click', () => {
   playListContainer.classList.toggle('hide-playlist');
   slidePrev.classList.toggle('close-playlist');
@@ -457,36 +468,6 @@ document.querySelector(".volume-button").addEventListener("click", () => {
   }
 });
 
-//func to save name & city to local storage
-function setLocalStorage() {
-  localStorage.setItem('name', name.value);
-  localStorage.setItem('city', city.value);
-  localStorage.setItem('playNum', playNum);
-  localStorage.setItem('pauseNum', pauseNum);
-  localStorage.setItem('duration', audio.currentTime);
-  localStorage.setItem('volume', audio.volume)
-}
-
-//func to get name & city from local storage and write them to the page
-function getLocalStorage() {
-  if (localStorage.getItem('name')) {name.value = localStorage.getItem('name')}
-  if (localStorage.getItem('city')) {city.value = localStorage.getItem('city')}
-  playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
-  if (localStorage.getItem('playNum')) {playNum = +localStorage.getItem('playNum')}
-  if (localStorage.getItem('pauseNum')) {pauseNum = +localStorage.getItem('pauseNum')}
-  setPlayer();
-  if (localStorage.getItem('duration')) {audio.currentTime = localStorage.getItem('duration')}
-  if (localStorage.getItem('volume')) {
-    audio.volume = localStorage.getItem('volume');
-    document.querySelector(".volume-percentage").style.width = (audio.volume * 100) + '%';
-    if (localStorage.getItem('volume') <= 0.5) {document.querySelector(".full-volume").classList.add("hide-volume")}
-  }
-}
-
-window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
-window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page
-
-
 const repeatBtn = document.querySelector(".repeat-button");
 const repeatSvg = document.querySelector(".repeat-svg");
 const repeatIcon = document.querySelector(".repeat-icon");
@@ -582,12 +563,40 @@ shuffleBtn.addEventListener('click', () => {
   }
 });
 
-//SETTINGS
+//10. SETTINGS
+
+const state = {
+  language: 'en',
+  photoSource: 'github',
+  time: true,
+  date: true,
+  greeting: true,
+  quote: true,
+  weather: true,
+  audio: true,
+  todolist: true,
+  tags: document.querySelector(".bg-tags").value
+}
+//show settings
 document.querySelector(".setting-icon").addEventListener('click', () => {
   document.querySelector(".setting-icon").classList.toggle("toggle");
   document.querySelector(".setting-wrapper").classList.toggle("show-settings");
+  state.tags = document.querySelector(".bg-tags").value;
+  console.log(document.querySelector(".bg-tags").value)
 });
 
+//hide settings by click outside
+document.addEventListener('click', event => {
+  if (!document.querySelector(".setting-container").contains(event.target) &&
+  !document.querySelector(".setting-icon").contains(event.target)) {
+    document.querySelector(".setting-icon").classList.remove("toggle");
+    document.querySelector(".setting-wrapper").classList.remove("show-settings");
+    state.tags = document.querySelector(".bg-tags").value;
+    console.log(document.querySelector(".bg-tags").value)
+  }
+})
+
+//hide elements in settings
 document.querySelectorAll('.slide-toggle').forEach((element, index) => element.addEventListener('click', () => {
   const components = [
     document.querySelector(".time"),
@@ -596,34 +605,198 @@ document.querySelectorAll('.slide-toggle').forEach((element, index) => element.a
     document.querySelector(".quote-div"),
     document.querySelector(".weather"),
     document.querySelector(".player"),
-    document.querySelector(".to-do-list")
+    document.querySelector(".todolist")
   ];
+  const states = ['time', 'date', 'greeting', 'quote', 'weather', 'audio', 'todolist'];
   if (element.querySelector(".checkbox").checked === true) {
     components[index].classList.add("hide");
     if (index === 5) {slidePrev.classList.add('close-playlist')};
     element.querySelector(".checkbox").checked = false;
+    state[states[index]] = false;
   }
   else {
     components[index].classList.remove("hide");
     if (index === 5) slidePrev.classList.remove('close-playlist');
     element.querySelector(".checkbox").checked = true;
+    state[states[index]] = true;
   }
 }));
 
-window.addEventListener('load', () => {
-  document.querySelectorAll('.slide-toggle').forEach((element, index) => {
-    const components = [
-      document.querySelector(".time"),
-      document.querySelector(".date"),
-      document.querySelector(".greeting-container"),
-      document.querySelector(".quote-div"),
-      document.querySelector(".weather"),
-      document.querySelector(".player"),
-      document.querySelector(".to-do-list")
-    ];
-    if (element.querySelector(".checkbox").checked === false) {
-      components[index].classList.add("hide");
-      if (index === 5) {slidePrev.classList.add('close-playlist')};
+function setLang() {
+  showTime();
+  getWeather();
+  getQuotes();
+  document.querySelector('.city').placeholder = currentLang.city;
+  document.querySelector('.name').placeholder = currentLang.name;
+  if (city.value === 'Минск' || city.value === 'London') {city.value = currentLang.cityDefault};
+  state.language = currentLang.lang;
+  document.querySelector('.lang').querySelector('.setting-name').innerHTML = currentLang.settingsMain[0];
+  document.querySelector('.bg').querySelector('.setting-name').innerHTML = currentLang.settingsMain[1];
+  document.querySelector('.tags').querySelector('.setting-name').innerHTML = currentLang.settingsMain[2];
+  document.querySelectorAll(".slide-toggle").forEach((element, index) => {
+    element.querySelector(".setting-name").innerHTML = currentLang.settings[index]
+  });
+};
+
+document.querySelector(".en-lang").addEventListener('click', () => {
+  if (document.querySelector(".en-lang").querySelector(".lang-radio").value !== currentLang.lang) {
+    currentLang = enLang;
+    setLang();
+  }
+})
+document.querySelector(".ru-lang").addEventListener('click', () => {
+  if (document.querySelector(".ru-lang").querySelector(".lang-radio").value !== currentLang.lang) {
+  currentLang = ruLang;
+  setLang();
+}
+})
+
+//func to save name & city to local storage
+function setLocalStorage() {
+  localStorage.setItem('name', name.value);
+  localStorage.setItem('city', city.value);
+  localStorage.setItem('playNum', playNum);
+  localStorage.setItem('pauseNum', pauseNum);
+  localStorage.setItem('duration', audio.currentTime);
+  localStorage.setItem('volume', audio.volume);
+  localStorage.setItem('language', state.language);
+  localStorage.setItem('photoSource', state.photoSource);
+  localStorage.setItem('tags', state.tags);
+  localStorage.setItem('time', state.time);
+  localStorage.setItem('date', state.date);
+  localStorage.setItem('greeting', state.greeting);
+  localStorage.setItem('quote', state.quote);
+  localStorage.setItem('weather', state.weather);
+  localStorage.setItem('audio', state.audio);
+  localStorage.setItem('todolist', state.todolist);
+}
+
+//func to get name & city from local storage and write them to the page
+function getLocalStorage() {
+  if (localStorage.getItem('name')) {name.value = localStorage.getItem('name')};
+  if (localStorage.getItem('city')) {city.value = localStorage.getItem('city')};
+  playItems[playNum].querySelector('.icon-container').classList.remove('item-active');
+  if (localStorage.getItem('playNum')) {playNum = +localStorage.getItem('playNum')};
+  if (localStorage.getItem('pauseNum')) {pauseNum = +localStorage.getItem('pauseNum')};
+  setPlayer();
+  if (localStorage.getItem('duration')) {audio.currentTime = localStorage.getItem('duration')};
+  if (localStorage.getItem('volume')) {
+    audio.volume = localStorage.getItem('volume');
+    document.querySelector(".volume-percentage").style.width = (audio.volume * 100) + '%';
+    if (localStorage.getItem('volume') <= 0.5) {document.querySelector(".full-volume").classList.add("hide-volume")}
+  };
+  if (localStorage.getItem('language')) {
+    if (localStorage.getItem('language') === 'en') {
+      document.querySelector("#en").checked = true;
+      currentLang = enLang;
+      setLang();
+    } else if (localStorage.getItem('language') === 'ru') {
+      document.querySelector("#ru").checked = true;
+      currentLang = ruLang;
+      setLang();
     }
-  })
+  };
+  if (localStorage.getItem('photoSource')) {
+    if (localStorage.getItem('photoSource') === 'github') {
+      document.querySelector("#git").checked = true;
+      state.photoSource = 'github';
+      document.querySelector(".tags").classList.add("hide-tags");
+    } else if (localStorage.getItem('photoSource') === 'unsplash') {
+      document.querySelector("#unsplash").checked = true;
+      state.photoSource = 'unsplash';
+    } else if (localStorage.getItem('photoSource') === 'flickr') {
+      document.querySelector("#flickr").checked = true;
+      state.photoSource = 'flickr';
+    }
+  };
+  if (localStorage.getItem('tags')) {
+    document.querySelector(".bg-tags").value = localStorage.getItem('tags');
+    state.tags = localStorage.getItem('tags');
+  };
+  if (localStorage.getItem('time')) {
+    if (localStorage.getItem('time') === 'false') {
+      document.querySelector("#time").checked = false;
+      state.time = false;
+      document.querySelector(".time").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('date')) {
+    if (localStorage.getItem('date') === 'false') {
+      document.querySelector("#date").checked = false;
+      state.date = false;
+      document.querySelector(".date").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('greeting')) {
+    if (localStorage.getItem('greeting') === 'false') {
+      document.querySelector("#greeting").checked = false;
+      state.greeting = false;
+      document.querySelector(".greeting-container").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('quote')) {
+    if (localStorage.getItem('quote') === 'false') {
+      document.querySelector("#quote").checked = false;
+      state.quote = false;
+      document.querySelector(".quote-div").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('weather')) {
+    if (localStorage.getItem('weather') === 'false') {
+      document.querySelector("#weather").checked = false;
+      state.weather = false;
+      document.querySelector(".weather").classList.add("hide")
+    }
+  };
+  if (localStorage.getItem('audio')) {
+    if (localStorage.getItem('audio') === 'false') {
+      document.querySelector("#audio").checked = false;
+      state.audio = false;
+      document.querySelector(".player").classList.add("hide");
+      slidePrev.classList.add('close-playlist')
+    }
+  };
+  if (localStorage.getItem('todolist')) {
+    if (localStorage.getItem('todolist') === 'false') {
+      document.querySelector("#todolist").checked = false;
+      state.todolist = false;
+      document.querySelector(".todolist").classList.add("hide")
+    }
+  };
+}
+window.addEventListener('beforeunload', setLocalStorage);                      //save name & city to local storage before reload the page
+window.addEventListener('load', getLocalStorage);                              //write name & city from local storage to the page after load page
+
+//9. BACKGROUND API
+
+async function setUnsplashBg() {
+  const img = new Image();
+  const tags = document.querySelector(".bg-tags").value;
+  const url = 'https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=517-gEX_Tnf0NtLsR0gjynwVeAY49jH3wddAqS8S0x0';
+  const res = await fetch(url);
+  const data = await res.json();
+  img.src = data.urls.regular;
+  img.onload = () => {body.style.backgroundImage = `url(${img.src})`};
+}
+
+async function setFlickrBg() {
+  const img = new Image();
+  const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=43de05dd9651aa75b4427038136f4a0f&tags=nature&extras=url_l&format=json&nojsoncallback=1';
+  const res = await fetch(url);
+  const data = await res.json();
+  img.src = data.photos.photo[randomNum].url_l;
+  img.onload = () => {body.style.backgroundImage = `url(${img.src})`};
+}
+
+document.querySelector(".git").addEventListener('click', () => {
+  document.querySelector(".tags").classList.add("hide-tags");
+  state.photoSource = 'github';
+});
+document.querySelector(".unsplash").addEventListener('click', () => {
+  document.querySelector(".tags").classList.remove("hide-tags");
+  state.photoSource = 'unsplash';
+});
+document.querySelector(".flickr").addEventListener('click', () => {
+  document.querySelector(".tags").classList.remove("hide-tags");
+  state.photoSource = 'flickr';
 });
