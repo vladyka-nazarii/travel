@@ -771,8 +771,8 @@ window.addEventListener('load', getLocalStorage);                              /
 
 async function setUnsplashBg() {
   const img = new Image();
-  const tags = document.querySelector(".bg-tags").value;
-  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tags}&client_id=517-gEX_Tnf0NtLsR0gjynwVeAY49jH3wddAqS8S0x0`;
+  const tags = document.querySelector(".bg-tags");
+  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tags.value}&client_id=517-gEX_Tnf0NtLsR0gjynwVeAY49jH3wddAqS8S0x0`;
   const res = await fetch(url);
   const data = await res.json();
   img.src = data.urls.regular;
@@ -781,8 +781,10 @@ async function setUnsplashBg() {
 
 async function setFlickrBg() {
   const img = new Image();
-  const tags = document.querySelector(".bg-tags").value;
-  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=43de05dd9651aa75b4427038136f4a0f&tags=${tags}&extras=url_l&format=json&nojsoncallback=1`;
+  const tags = document.querySelector(".bg-tags");
+  let defaultTag = 'nature';
+  if (tags.value !== '') {defaultTag = tags.value};
+  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=43de05dd9651aa75b4427038136f4a0f&tags=${defaultTag}&extras=url_l&format=json&nojsoncallback=1`;
   const res = await fetch(url);
   const data = await res.json();
   img.src = data.photos.photo[randomNum].url_l;
