@@ -13,7 +13,7 @@ let currentLang = {
   humidity: 'Humidity: ',
   quotes: './js/quotes_en.json',
   settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
-  settingsMain: ['Language', 'Background', 'Tags']
+  settingsMain: ['Language', 'Background', 'Tags', 'Add']
 };
 const enLang = {
   lang: 'en',
@@ -29,7 +29,7 @@ const enLang = {
   humidity: 'Humidity: ',
   quotes: './js/quotes_en.json',
   settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
-  settingsMain: ['Language', 'Background', 'Tags']
+  settingsMain: ['Language', 'Background', 'Tags', 'Add']
 };
 const ruLang = {
   lang: 'ru',
@@ -45,7 +45,7 @@ const ruLang = {
   humidity: 'Влажность: ',
   quotes: './js/quotes_ru.json',
   settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Список дел'],
-  settingsMain: ['Язык', 'Фон', 'Теги']
+  settingsMain: ['Язык', 'Фон', 'Теги', 'Добавить']
 };
 document.querySelector('.city').placeholder = currentLang.city;
 document.querySelector('.name').placeholder = currentLang.name;
@@ -582,7 +582,6 @@ document.querySelector(".setting-icon").addEventListener('click', () => {
   document.querySelector(".setting-icon").classList.toggle("toggle");
   document.querySelector(".setting-wrapper").classList.toggle("show-settings");
   state.tags = document.querySelector(".bg-tags").value;
-  console.log(document.querySelector(".bg-tags").value)
 });
 
 //hide settings by click outside
@@ -592,7 +591,6 @@ document.addEventListener('click', event => {
     document.querySelector(".setting-icon").classList.remove("toggle");
     document.querySelector(".setting-wrapper").classList.remove("show-settings");
     state.tags = document.querySelector(".bg-tags").value;
-    console.log(document.querySelector(".bg-tags").value)
   }
 })
 
@@ -633,6 +631,8 @@ function setLang() {
   document.querySelector('.lang').querySelector('.setting-name').innerHTML = currentLang.settingsMain[0];
   document.querySelector('.bg').querySelector('.setting-name').innerHTML = currentLang.settingsMain[1];
   document.querySelector('.tags').querySelector('.setting-name').innerHTML = currentLang.settingsMain[2];
+  document.querySelector('.title').innerHTML = currentLang.settings[6];
+  document.querySelector('.add-todo').innerHTML = currentLang.settingsMain[3];
   document.querySelectorAll(".slide-toggle").forEach((element, index) => {
     element.querySelector(".setting-name").innerHTML = currentLang.settings[index]
   });
@@ -772,7 +772,7 @@ window.addEventListener('load', getLocalStorage);                              /
 async function setUnsplashBg() {
   const img = new Image();
   const tags = document.querySelector(".bg-tags").value;
-  const url = 'https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=517-gEX_Tnf0NtLsR0gjynwVeAY49jH3wddAqS8S0x0';
+  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tags}&client_id=517-gEX_Tnf0NtLsR0gjynwVeAY49jH3wddAqS8S0x0`;
   const res = await fetch(url);
   const data = await res.json();
   img.src = data.urls.regular;
@@ -781,7 +781,8 @@ async function setUnsplashBg() {
 
 async function setFlickrBg() {
   const img = new Image();
-  const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=43de05dd9651aa75b4427038136f4a0f&tags=nature&extras=url_l&format=json&nojsoncallback=1';
+  const tags = document.querySelector(".bg-tags").value;
+  const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=43de05dd9651aa75b4427038136f4a0f&tags=${tags}&extras=url_l&format=json&nojsoncallback=1`;
   const res = await fetch(url);
   const data = await res.json();
   img.src = data.photos.photo[randomNum].url_l;
@@ -800,3 +801,16 @@ document.querySelector(".flickr").addEventListener('click', () => {
   document.querySelector(".tags").classList.remove("hide-tags");
   state.photoSource = 'flickr';
 });
+
+//11. TO DO LIST
+
+function genToDoList() {
+  const toDoList = document.querySelector(".tasks");
+  const toDoItem = document.createElement('li');
+  const toDoText = document.querySelector(".todo-text");
+  toDoItem.innerHTML = toDoText.value;
+  toDoItem.addEventListener('click', () => toDoItem.classList.add("complited"));
+  toDoList.append(toDoItem);
+  toDoText.value = ''
+}
+document.querySelector(".add-todo").addEventListener('click', genToDoList)

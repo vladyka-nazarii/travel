@@ -756,6 +756,30 @@ input:checked + .slider:after {
   transition: .3s;
 }
 
+.title {
+  font-size: 20px;
+}
+
+.todo-container {
+  margin-top: 10px;
+  text-align: start;
+}
+
+.tasks li {
+  font-size: 18px;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+.complited {
+  text-decoration: line-through;
+  opacity: .5;
+}
+
+.todo-text {
+  margin-top: 10px;
+}
+
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
