@@ -13,7 +13,7 @@ let currentLang = {
   humidity: 'Humidity: ',
   quotes: './js/quotes_en.json',
   settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
-  settingsMain: ['Language', 'Background', 'Tags']
+  settingsMain: ['Language', 'Background', 'Tags', 'Add']
 };
 const enLang = {
   lang: 'en',
@@ -29,7 +29,7 @@ const enLang = {
   humidity: 'Humidity: ',
   quotes: './js/quotes_en.json',
   settings: ['Time', 'Date', 'Greeting', 'Quote', 'Weather', 'Audioplayer', 'To Do List'],
-  settingsMain: ['Language', 'Background', 'Tags']
+  settingsMain: ['Language', 'Background', 'Tags', 'Add']
 };
 const ruLang = {
   lang: 'ru',
@@ -45,7 +45,7 @@ const ruLang = {
   humidity: 'Влажность: ',
   quotes: './js/quotes_ru.json',
   settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Список дел'],
-  settingsMain: ['Язык', 'Фон', 'Теги']
+  settingsMain: ['Язык', 'Фон', 'Теги', 'Добавить']
 };
 document.querySelector('.city').placeholder = currentLang.city;
 document.querySelector('.name').placeholder = currentLang.name;
@@ -631,6 +631,8 @@ function setLang() {
   document.querySelector('.lang').querySelector('.setting-name').innerHTML = currentLang.settingsMain[0];
   document.querySelector('.bg').querySelector('.setting-name').innerHTML = currentLang.settingsMain[1];
   document.querySelector('.tags').querySelector('.setting-name').innerHTML = currentLang.settingsMain[2];
+  document.querySelector('.title').innerHTML = currentLang.settings[6];
+  document.querySelector('.add-todo').innerHTML = currentLang.settingsMain[3];
   document.querySelectorAll(".slide-toggle").forEach((element, index) => {
     element.querySelector(".setting-name").innerHTML = currentLang.settings[index]
   });
@@ -799,3 +801,16 @@ document.querySelector(".flickr").addEventListener('click', () => {
   document.querySelector(".tags").classList.remove("hide-tags");
   state.photoSource = 'flickr';
 });
+
+//11. TO DO LIST
+
+function genToDoList() {
+  const toDoList = document.querySelector(".tasks");
+  const toDoItem = document.createElement('li');
+  const toDoText = document.querySelector(".todo-text");
+  toDoItem.innerHTML = toDoText.value;
+  toDoItem.addEventListener('click', () => toDoItem.classList.add("complited"));
+  toDoList.append(toDoItem);
+  toDoText.value = ''
+}
+document.querySelector(".add-todo").addEventListener('click', genToDoList)
