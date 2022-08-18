@@ -96,12 +96,19 @@ function setGithubBg() {
   img.src = `https://raw.githubusercontent.com/vladyka-nazarii/stage1-tasks/assets/images/${timeOfDay[Math.floor((new Date().getHours())/6)]}/${randomNum.toString().padStart(2, "0")}.webp`;
   img.onload = () => {body.style.backgroundImage = `url(${img.src})`};
 }
+
+//func to set bg
 function setBg() {
   if (document.querySelector("#git").checked) setGithubBg();
   if (document.querySelector("#unsplash").checked) setUnsplashBg();
   if (document.querySelector("#flickr").checked) setFlickrBg();
 }
-setBg();
+
+//startup set bg
+if (localStorage.getItem('photoSource') === 'github') {setGithubBg()}
+else if (localStorage.getItem('photoSource') === 'unsplash') {setUnsplashBg()}
+else if (localStorage.getItem('photoSource') === 'flickr') {setFlickrBg()}
+else {setBg()};
 
 //func to change bg left (decrease)
 function getSlidePrev() {
