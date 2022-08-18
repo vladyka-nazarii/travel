@@ -44,7 +44,7 @@ const ruLang = {
   speed: ' м/с',
   humidity: 'Влажность: ',
   quotes: './js/quotes_ru.json',
-  settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Список дел'],
+  settings: ['Время', 'Дата', 'Приветсвие', 'Цитаты', 'Погода', 'Аудиоплеер', 'Задачи'],
   settingsMain: ['Язык', 'Фон', 'Теги', 'Добавить']
 };
 document.querySelector('.city').placeholder = currentLang.city;
