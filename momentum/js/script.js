@@ -5,7 +5,7 @@ let currentLang = {
   greetings: ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'],
   name: "[Enter name]",
   city: "[Enter city]",
-  cityDefault: 'London',
+  cityDefault: 'Minsk',
   cityError: 'Error! City not found!',
   weather: 'en',
   wind: 'Wind speed: ',
@@ -21,7 +21,7 @@ const enLang = {
   greetings: ['Good Night,', 'Good Morning,', 'Good Afternoon,', 'Good Evening,'],
   name: "[Enter name]",
   city: "[Enter city]",
-  cityDefault: 'London',
+  cityDefault: 'Minsk',
   cityError: 'Error! City not found!',
   weather: 'en',
   wind: 'Wind speed: ',
@@ -63,7 +63,8 @@ function showTime() {
 }
 const date = document.querySelector('.date');
 function showDate() {
-  date.textContent = new Date().toLocaleDateString(currentLang.date, {weekday: 'long', month: 'long', day: 'numeric'});
+  const currentDate = new Date().toLocaleDateString(currentLang.date, {weekday: 'long', month: 'long', day: 'numeric'});
+  date.textContent = currentDate[0].toUpperCase() + currentDate.slice(1);
 }
 
 // 2. GREETING
@@ -626,7 +627,7 @@ function setLang() {
   getQuotes();
   document.querySelector('.city').placeholder = currentLang.city;
   document.querySelector('.name').placeholder = currentLang.name;
-  if (city.value === 'Минск' || city.value === 'London') {city.value = currentLang.cityDefault};
+  if (city.value === 'Минск' || city.value === 'Minsk') {city.value = currentLang.cityDefault};
   state.language = currentLang.lang;
   document.querySelector('.lang').querySelector('.setting-name').innerHTML = currentLang.settingsMain[0];
   document.querySelector('.bg').querySelector('.setting-name').innerHTML = currentLang.settingsMain[1];
