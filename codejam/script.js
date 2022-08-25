@@ -19,23 +19,9 @@ let activeAncient;
 let activedifficulty;
 setRandomSettings();
 
-function setStages() {
-  const dots = {};
-  dots.greenCards = document.querySelectorAll('.dot.green');
-  dots.blueCards = document.querySelectorAll('.dot.blue');
-  dots.brownCards = document.querySelectorAll('.dot.brown');
-  console.log(dots)
-};
-setStages();
-
 const stages = Object.keys(activeAncient).filter(key => key.match('Stage'));
 const colours = new Set();
 Object.values(activeAncient).forEach(el => Object.keys(el).filter(key => key.match('Cards')).forEach(el => colours.add(el)));
-const numOfCards = {};
-colours.forEach(el => {for (let i=0; i<stages.length; i++) {
-    if (numOfCards[el]) {numOfCards[el] += activeAncient[stages[i]][el]}
-    else {numOfCards[el] = 0; numOfCards[el] += activeAncient[stages[i]][el]}
-}});
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -45,6 +31,11 @@ function shuffle(array) {
 }
 
 function fillDeck(colour, difficulty) {
+  const numOfCards = {};
+  colours.forEach(el => {for (let i=0; i<stages.length; i++) {
+    if (numOfCards[el]) {numOfCards[el] += activeAncient[stages[i]][el]}
+    else {numOfCards[el] = 0; numOfCards[el] += activeAncient[stages[i]][el]}
+  }});
   const cards = {};
   if (difficulty.id === 'veryeasy' || difficulty.id === 'veryhard') {
     cards[`${colour}${difficulty.id}`] = shuffle(allCards[`${colour}Cards`].filter(el => el.difficulty === `${difficulty.id.slice(4)}`));
@@ -65,22 +56,59 @@ function fillDeck(colour, difficulty) {
 }
 const deck = {};
 const allCards = {greenCards, blueCards, brownCards};
-colours.forEach(el => fillDeck(`${el.replace(/Cards/, '')}`, activedifficulty));
-Object.values(deck).forEach(el => shuffle(el));
+function filterCards() {
+  colours.forEach(el => fillDeck(`${el.replace(/Cards/, '')}`, activedifficulty));
+  Object.values(deck).forEach(el => shuffle(el))
+};
+filterCards();
 
-let finalDeck = [];
-stages.forEach((elStages, index) => {
-  finalDeck[index] = [];
-  colours.forEach(elColour => {
-    for (let i = activeAncient[elStages][elColour]; i > 0; i--) {
+
+let finalDeck;
+function setFinalDeck() {
+  finalDeck = [];
+  stages.forEach((elStages, index) => {
+    finalDeck[index] = [];
+    colours.forEach(elColour => {
+      for (let i = activeAncient[elStages][elColour]; i > 0; i--) {
       finalDeck[index].push(deck[elColour].pop())
-    }
-  })
-});
-finalDeck.forEach(el => shuffle(el));
-finalDeck = finalDeck.flat();
-// console.log(deck);
-// console.log(stages);
+      }
+    })
+  });
+  finalDeck.forEach(el => shuffle(el));
+  finalDeck = finalDeck.flat()
+};
+setFinalDeck();
+
+function setStages() {
+  const dots = {};
+  dots.greenCards = document.querySelectorAll('.dot.green');
+  dots.blueCards = document.querySelectorAll('.dot.blue');
+  dots.brownCards = document.querySelectorAll('.dot.brown');
+  stages.forEach((elStages, index) => {
+    colours.forEach(elColour => {
+      dots[elColour][index].innerHTML = activeAncient[elStages][elColour]
+    })
+  });
+};
+setStages();
+
+htmlAncients.forEach((el, index) => el.addEventListener('click', () => {
+  htmlAncients.forEach(element => element.classList.remove("active"));
+  el.classList.add("active");
+  activeAncient = ancientsData[index];
+  setStages();
+  filterCards();
+  setFinalDeck();
+}));
+htmlDifficulties.forEach((el, index) => el.addEventListener('click', () => {
+  htmlDifficulties.forEach(element => element.classList.remove("active"));
+  el.classList.add("active");
+  activedifficulty = difficulties[index];
+  filterCards();
+  setFinalDeck();
+}));
+
+
+
 // console.log(colours);
 // console.log(activeAncient);
-// console.log(finalDeck);
