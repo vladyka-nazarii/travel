@@ -2,15 +2,31 @@ import difficulties from './data/difficulties.js';
 import ancientsData from './data/ancients.js';
 import {greenCards, blueCards, brownCards} from './data/mythicCards/index.js';
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]
-  } return array.slice(0)
-}
+function getRandomNum(count) {
+  return Math.floor(Math.random() * count)
+};
+function setRandomSettings() {
+  const randomAncient = getRandomNum(htmlAncients.length);
+  const randomDifficulty = getRandomNum(htmlDifficulties.length);
+  htmlAncients[randomAncient].classList.add("active");
+  htmlDifficulties[randomDifficulty].classList.add("active");
+  activeAncient = ancientsData[randomAncient];
+  activedifficulty = difficulties[randomDifficulty]
+};
+const htmlAncients = document.querySelectorAll('.ancient-card');
+const htmlDifficulties = document.querySelectorAll('.difficulty');
+let activeAncient;
+let activedifficulty;
+setRandomSettings();
 
-let activeAncient = ancientsData[0];
-let activedifficulty = difficulties[0];
+function setStages() {
+  const dots = {};
+  dots.greenCards = document.querySelectorAll('.dot.green');
+  dots.blueCards = document.querySelectorAll('.dot.blue');
+  dots.brownCards = document.querySelectorAll('.dot.brown');
+  console.log(dots)
+};
+setStages();
 
 const stages = Object.keys(activeAncient).filter(key => key.match('Stage'));
 const colours = new Set();
@@ -21,7 +37,13 @@ colours.forEach(el => {for (let i=0; i<stages.length; i++) {
     else {numOfCards[el] = 0; numOfCards[el] += activeAncient[stages[i]][el]}
 }});
 
-colours.forEach(el => console.log(el.replace(/Card/, '')));
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]
+  } return array.slice(0)
+}
+
 function fillDeck(colour, difficulty) {
   const cards = {};
   if (difficulty.id === 'veryeasy' || difficulty.id === 'veryhard') {
@@ -43,25 +65,22 @@ function fillDeck(colour, difficulty) {
 }
 const deck = {};
 const allCards = {greenCards, blueCards, brownCards};
+colours.forEach(el => fillDeck(`${el.replace(/Cards/, '')}`, activedifficulty));
+Object.values(deck).forEach(el => shuffle(el));
 
-
-fillDeck('green', activedifficulty);
-fillDeck('blue', activedifficulty);
-fillDeck('brown', activedifficulty);
+let finalDeck = [];
+stages.forEach((elStages, index) => {
+  finalDeck[index] = [];
+  colours.forEach(elColour => {
+    for (let i = activeAncient[elStages][elColour]; i > 0; i--) {
+      finalDeck[index].push(deck[elColour].pop())
+    }
+  })
+});
+finalDeck.forEach(el => shuffle(el));
+finalDeck = finalDeck.flat();
+// console.log(deck);
+// console.log(stages);
 // console.log(colours);
-
-
-
-// console.log(numOfCards);
-// console.log(difficulties);
-// console.log(cards);
-
-
-// for (let key in activeAncient) {
-//   let i = 0;
-//   i += activeAncient[0][`brownCards`];
-//   console.log(activeAncient[key][`brownCards`]);
-//   console.log(i)
-// };
-
-// console.log(activeAncient[/1/][`blueCards`]);
+// console.log(activeAncient);
+// console.log(finalDeck);
