@@ -11,9 +11,11 @@ function setRandomSettings() {
   htmlAncients[randomAncient].classList.add("active");
   htmlDifficulties[randomDifficulty].classList.add("active");
   activeAncient = ancientsData[randomAncient];
-  activedifficulty = difficulties[randomDifficulty]
+  activedifficulty = difficulties[randomDifficulty];
+  htmlSelectedAncient.style = `background-image: url(${activeAncient.cardFace});`
 };
 const htmlAncients = document.querySelectorAll(".ancient-card");
+const htmlSelectedAncient = document.querySelector(".selected-ancient"); 
 const htmlDifficulties = document.querySelectorAll(".difficulty");
 const htmlDeck = document.querySelector(".deck");
 const htmlLastCard = document.querySelector(".last-card");
@@ -66,7 +68,6 @@ function filterCards() {
 };
 filterCards();
 
-
 let finalDeck;
 function setFinalDeck() {
   finalDeck = [];
@@ -102,12 +103,15 @@ htmlAncients.forEach((el, index) => el.addEventListener('click', () => {
   htmlAncients.forEach(element => element.classList.remove("active"));
   el.classList.add("active");
   activeAncient = ancientsData[index];
+  htmlSelectedAncient.style = `background-image: url(${activeAncient.cardFace});`;
+  htmlStageText.forEach(e => e.classList.remove("done"));
   setStages();
   filterCards();
   setFinalDeck()
 }));
 htmlDifficulties.forEach((el, index) => el.addEventListener('click', () => {
   htmlDifficulties.forEach(element => element.classList.remove("active"));
+  htmlStageText.forEach(e => e.classList.remove("done"));
   el.classList.add("active");
   activedifficulty = difficulties[index];
   setStages();

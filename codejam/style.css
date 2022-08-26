@@ -10,10 +10,10 @@ body {
  .ancients-container {
   display:flex;
   flex-wrap:wrap;
+  flex-direction: column;
   justify-content: center;
-  gap:10px;
-  min-width:40%;
-  padding:20px
+  gap:1vh;
+  padding:2vh
  }
  .ancients-container .ancient-card {
   background-position:50%;
@@ -21,34 +21,44 @@ body {
   background-size:contain;
   box-sizing:border-box;
   cursor:pointer;
-  height:260px;
-  width:200px
+  height:23.19vh;
+  width:17.9vh;
+  border-radius:1vh;
+  opacity:.7;
  }
  .ancients-container .ancient-card.active {
-  border:2px solid red
+  opacity: 1;
+  border: 2px solid rgb(231, 110, 12)
+ }
+ .selected-ancient {
+  background-size:cover;
+  height:70vh;
+  width:54vh;
+  border-radius:2vh;
+  border: 2px solid rgb(231, 110, 12)
  }
  .difficulty-container {
   display: flex;
-  gap: 20px;
-  justify-content: center
+  justify-content: space-around;
+  margin: 50px 0;
  }
  .difficulty-container .difficulty {
-  border:2px solid purple;
+  border:2px solid black;
   box-sizing:border-box;
-  color:purple;
   cursor:pointer;
   padding:5px;
-  text-align:center
+  text-align:center;
+  border-radius: .5vh;
+  background-color: rgba(255, 255, 255, 0.5);
  }
  .difficulty-container .difficulty.active {
-  background-color:red
+  background-color:rgb(231, 110, 12)
  }
  .deck-container {
   align-items:center;
   display:flex;
   gap:20px;
   justify-content:center;
-  min-width:30%
  }
  .deck-container .shuffle-button {
   background-color:red;
@@ -57,46 +67,54 @@ body {
   cursor:pointer;
   padding:5px
  }
- .deck-container .current-state {
+ .current-state {
   display:flex;
   flex-direction:column;
+  align-items: center;
   gap:10px;
-  min-height:30%
+  margin: 20px 0;
  }
- .deck-container .current-state .stage-container {
+ .current-state .stage-container {
   align-items:center;
   display:flex;
-  flex-direction:column;
-  gap:5px
+  gap:2vh
  }
- .deck-container .current-state .stage-container .stage-text {
-  color:purple
+ .current-state .stage-container .stage-text {
+  border:2px solid black;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5vh;
+  padding: 5px;
  }
- .deck-container .current-state .stage-container .stage-text.done {
-  color:red
+ .current-state .stage-container .stage-text.done {
+  background-color: rgb(231, 110, 12)
  }
- .deck-container .current-state .stage-container .dots-container {
+ .current-state .stage-container .dots-container {
   align-items:center;
   display:flex;
   gap:20px;
   justify-content:center
  }
- .deck-container .current-state .stage-container .dot {
+ .current-state .stage-container .dot {
   align-items:center;
-  border-radius:50%;
+  border-radius:30%;
   display:flex;
   height:30px;
   justify-content:center;
-  width:30px
+  width:30px;
+  color: white;
+  border: 1px solid white;
  }
- .deck-container .current-state .stage-container .dot.green {
-  background-color:green
+ .current-state .stage-container .dot.green {
+  background-color:#006600
  }
- .deck-container .current-state .stage-container .dot.brown {
-  background-color:brown
+ .current-state .stage-container .dot.brown {
+  background-color:#964B00
  }
- .deck-container .current-state .stage-container .dot.blue {
-  background-color:blue
+ .current-state .stage-container .dot.blue {
+  background-color:#0048FF
+ }
+ .deck-container {
+  padding: 2vh
  }
  .deck-container .deck {
   cursor:pointer
@@ -104,16 +122,17 @@ body {
  .deck-container .deck,
  .deck-container .last-card {
   background-size:cover;
-  height:190px;
-  width:130px
+  height:60vh;
+  width:47.64vh;
+  border-radius:2vh;
+  border: 2px solid rgb(231, 110, 12)
  }
  .app {
   background-position:50%;
   background-repeat:no-repeat;
   background-size:cover;
   display:flex;
-  flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
   gap:20px;
   height:100vh;
