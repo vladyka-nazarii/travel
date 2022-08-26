@@ -17,6 +17,7 @@ const htmlAncients = document.querySelectorAll(".ancient-card");
 const htmlDifficulties = document.querySelectorAll(".difficulty");
 const htmlDeck = document.querySelector(".deck");
 const htmlLastCard = document.querySelector(".last-card");
+const htmlStageText = document.querySelectorAll(".stage-text");
 
 let activeAncient;
 let activedifficulty;
@@ -114,13 +115,25 @@ htmlDifficulties.forEach((el, index) => el.addEventListener('click', () => {
   setFinalDeck()
 }));
 htmlDeck.addEventListener('click', () => {
-  // console.log(finalDeck[finalDeck.length-1]);
-  // console.log(finalDeck.pop().cardFace);
-  if (finalDeck.length > 0) htmlLastCard.style = `background-image: url(${finalDeck.pop().cardFace})`;
-  if (finalDeck.length === 0) htmlDeck.style = "cursor: auto";
-  console.log(finalDeck)
+  changeStages()
+  if (finalDeck.length > 0) htmlLastCard.style = `background-image: url(${finalDeck.shift().cardFace})`;
+  if (finalDeck.length === 0) htmlDeck.style = "cursor: auto"
   });
 
-
-// console.log(colours);
-// console.log(activeAncient);
+function changeStages() {
+  if (finalDeck.length > 0) {
+    const dots = document.querySelectorAll(`.dot.${finalDeck[0].color}`);
+    if (dots[0].innerHTML !== '0') dots[0].innerHTML = dots[0].innerHTML - 1
+    else if (dots[1].innerHTML !== '0') dots[1].innerHTML = dots[1].innerHTML - 1
+    else if (dots[2].innerHTML !== '0') dots[2].innerHTML = dots[2].innerHTML - 1
+  }
+  const allDots = document.querySelectorAll(".dot");
+  let doneStage;
+  if (doneStage == undefined && allDots[0].innerHTML + allDots[1].innerHTML + allDots[2].innerHTML === '000') {
+    htmlStageText[0].classList.add("done")
+  } if (doneStage == undefined && allDots[3].innerHTML + allDots[4].innerHTML + allDots[5].innerHTML === '000') {
+    htmlStageText[1].classList.add("done")
+  } if (doneStage == undefined && allDots[6].innerHTML + allDots[7].innerHTML + allDots[8].innerHTML === '000') {
+    htmlStageText[2].classList.add("done")
+  }
+};
