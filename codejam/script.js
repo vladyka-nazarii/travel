@@ -13,8 +13,11 @@ function setRandomSettings() {
   activeAncient = ancientsData[randomAncient];
   activedifficulty = difficulties[randomDifficulty]
 };
-const htmlAncients = document.querySelectorAll('.ancient-card');
-const htmlDifficulties = document.querySelectorAll('.difficulty');
+const htmlAncients = document.querySelectorAll(".ancient-card");
+const htmlDifficulties = document.querySelectorAll(".difficulty");
+const htmlDeck = document.querySelector(".deck");
+const htmlLastCard = document.querySelector(".last-card");
+
 let activeAncient;
 let activedifficulty;
 setRandomSettings();
@@ -81,14 +84,16 @@ setFinalDeck();
 
 function setStages() {
   const dots = {};
-  dots.greenCards = document.querySelectorAll('.dot.green');
-  dots.blueCards = document.querySelectorAll('.dot.blue');
-  dots.brownCards = document.querySelectorAll('.dot.brown');
+  dots.greenCards = document.querySelectorAll(".dot.green");
+  dots.blueCards = document.querySelectorAll(".dot.blue");
+  dots.brownCards = document.querySelectorAll(".dot.brown");
   stages.forEach((elStages, index) => {
     colours.forEach(elColour => {
       dots[elColour][index].innerHTML = activeAncient[elStages][elColour]
     })
   });
+  htmlLastCard.style = "";
+  htmlDeck.style = "background-image: url(./assets/mythicCardBackground.png);"
 };
 setStages();
 
@@ -98,16 +103,23 @@ htmlAncients.forEach((el, index) => el.addEventListener('click', () => {
   activeAncient = ancientsData[index];
   setStages();
   filterCards();
-  setFinalDeck();
+  setFinalDeck()
 }));
 htmlDifficulties.forEach((el, index) => el.addEventListener('click', () => {
   htmlDifficulties.forEach(element => element.classList.remove("active"));
   el.classList.add("active");
   activedifficulty = difficulties[index];
+  setStages();
   filterCards();
-  setFinalDeck();
+  setFinalDeck()
 }));
-
+htmlDeck.addEventListener('click', () => {
+  // console.log(finalDeck[finalDeck.length-1]);
+  // console.log(finalDeck.pop().cardFace);
+  if (finalDeck.length > 0) htmlLastCard.style = `background-image: url(${finalDeck.pop().cardFace})`;
+  if (finalDeck.length === 0) htmlDeck.style = "cursor: auto";
+  console.log(finalDeck)
+  });
 
 
 // console.log(colours);
